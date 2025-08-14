@@ -1,0 +1,40 @@
+SRCLIST = $(shell cat $(CL_ROOT)/verif/scripts/design.f)
+SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv
+VFLAGS = -sv
+TOP = top
+_CFLAGS=
+PROG=
+
+VCD ?= 0
+
+ifeq ($(VCD), 1)
+VFLAGS+= --trace
+_CFLAGS+= -DVCD -CFLAGS -DVCD_FILE=test_pd0.vcd
+endif
+
+ifneq ($(_CFLAGS), )
+CFLAGS=-CFLAGS $(_CFLAGS)
+endif
+
+# Normal tests, not c tests
+compile:
+	echo Verilator Compilation
+	mkdir -p $(SIM_DIR)
+	cd $(SIM_DIR) && verilator $(VFLAGS) \
+		$(CFLAGS) \
+		--cc $(SRC) \
+		$(TEST_NAME).sv \
+		--exe $(TEST_NAME).cpp  \
+		-I$(CL_ROOT)/design -I$(CL_ROOT)/design/code \
+		-top-module $(TOP) \
+		--Mdir $(SIM_DIR) \
+		+define+VCD_FILE=\"test_pd0.vcd\" \
+		+define+MEM_PATH_TO_PROGRAM="\"$(PROG)\""
+	make -C $(SIM_DIR) -f V$(TOP).mk V$(TOP)
+
+run: compile
+	echo Verilator Run
+	cd $(SIM_DIR) && ./V$(TOP)
+
+clean:
+	rm -rf $(SIM_DIR)
