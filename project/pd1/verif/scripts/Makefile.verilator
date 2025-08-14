@@ -1,0 +1,55 @@
+SRCLIST = $(shell cat $(CL_ROOT)/verif/scripts/design.f)
+SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv
+VFLAGS = -sv
+TOP = top
+_CFLAGS=-DMEM_DEPTH=$(MEM_DEPTH) -DMEM_PATH=$(MEM_PATH_STR)
+PROG=$(CL_ROOT)/verif/data/rv32ui-p-add.x
+
+VCD ?= 0
+
+ifeq ($(VCD), 1)
+VFLAGS+= --trace
+_CFLAGS+= -DVCD -CFLAGS -DVCD_FILE=test_pd1.vcd
+endif
+
+ifneq ($(_CFLAGS), )
+CFLAGS=-CFLAGS $(_CFLAGS)
+endif
+
+# Normal tests, not c tests
+compile:
+	echo Verilator Compilation
+	mkdir -p $(SIM_DIR)
+	cd $(SIM_DIR) && verilator $(VFLAGS) \
+		$(CFLAGS) \
+		--cc $(SRC) \
+		$(TEST_NAME).sv \
+		--exe $(TEST_NAME).cpp  \
+		-I$(CL_ROOT)/design \
+		-I$(CL_ROOT)/design/code \
+		-I$(CL_ROOT)/verif/tests \
+		-top-module $(TOP) \
+		--Mdir $(SIM_DIR) \
+		+define+MEM_PATH=$(MEM_PATH_STR) \
+		+define+TEST_VECTOR=$(TEST_VECTOR_STR) \
+		+define+MEM_DEPTH=$(MEM_DEPTH) \
+		+define+GEN_TRACE=$(GEN_TRACE) \
+		+define+TRACE_FILE=$(TRACE_FILE_STR)\
+		+define+LINE_COUNT=$(LINE_COUNT) \
+		+define+PATTERN_FILE=$(PATTERN_FILE_STR) \
+		+define+PATTERN_LINE_COUNT=$(PATTERN_LINE_COUNT) \
+		+define+PATTERN_DUMP_FILE=$(PATTERN_DUMP_FILE_STR) \
+		+define+PATTERN_DUMP=$(PATTERN_DUMP) \
+		+define+PATTERN_CHECK=$(PATTERN_CHECK) \
+		+define+VCD_FILE=$(VCD_FILE_STR) \
+		+define+TIMEOUT=$(TIMEOUT) \
+		$(WARN_OUTPUT)
+	$(WARN_CHECK)
+	make -C $(SIM_DIR) -f V$(TOP).mk V$(TOP)
+
+run: compile
+	echo Verilator Run
+	cd $(SIM_DIR) && ./V$(TOP)
+
+clean:
+	rm -rf $(SIM_DIR)
