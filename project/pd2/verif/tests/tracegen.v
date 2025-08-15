@@ -1,9 +1,10 @@
 // The following code will not be synthesizable
 `include "fields.h"
-`ifdef PROBE_ADDR `ifdef PROBE_DATA_IN `ifdef PROBE_DATA_OUT `ifdef PROBE_READ_EN `ifdef PROBE_WRITE_EN
-  `define PROBE_PD1_OK
-`endif `endif `endif `endif `endif
-`ifdef PROBE_PD1_OK
+`ifdef PROBE_F_PC `ifdef PROBE_F_INSN `ifdef PROBE_D_PC `ifdef PROBE_D_OPCODE `ifdef PROBE_D_RD `ifdef PROBE_D_FUNCT3 `ifdef PROBE_D_RS1 `ifdef PROBE_D_RS2 `ifdef PROBE_D_FUNCT7 `ifdef  PROBE_D_IMM
+  `define PROBE_PD2_OK
+`endif `endif `endif `endif `endif `endif `endif `endif `endif `endif
+
+`ifdef PROBE_PD2_OK
 generate if(`GEN_TRACE == 1) begin
   /**
   * The following code helps do pre-checks of the implementation
