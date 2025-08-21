@@ -37,23 +37,115 @@ An expected output after executing this command should look like this:
 Location of project:  /Users/anirudhkaushik/REPOS/EECS-4201-project
 Verilator version:  Verilator 5.038 2025-07-08 rev UNKNOWN.REV
 ```
-### Step 3: Build PD0
+### Step 3: Build and run PD0
 Navigate to the `project/pd0` directory and execute the following command:
-```
-make compile -C verif/scripts/ VERILATOR=1
-```
-If using ModelSim, then execute the following command:
 ```
 make compile -C verif/scripts/ VSIM=1
 ```
+If using Verilator, then execute the following command:
+```
+make compile -C verif/scripts/ VERILATOR=1
+```
+The rest of the steps assume that you are using ModelSim.
 
-## Build and testing infrastructure
+The output of the above command should look as below:
+```
+make: Entering directory '/eecs/home/kaushika/EECS-4201-project/project/pd0/verif/scripts'
+echo Vsim Compilation
+Vsim Compilation
+mkdir -p /eecs/home/kaushika/EECS-4201-project/project/pd0/verif/sim/vsim/test_pd
+/pkgcache/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vlog -work /eecs/home/kaushika/EECS-4201-project/project/pd0/work -sv \
+	+incdir+/eecs/home/kaushika/EECS-4201-project/project/pd0/design/code +incdir+/eecs/home/kaushika/EECS-4201-project/project/pd0/design/ -stats=none /eecs/home/kaushika/EECS-4201-project/project/pd0/design/code/constants_pkg.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/design/code/alu.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/design/code/assign_xor.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/design/code/reg_rst.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/design/code/three_stage_pipeline.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/design/code/pd0.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/verif/tests/clockgen.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/design/design_wrapper.sv /eecs/home/kaushika/EECS-4201-project/project/pd0/verif/tests/test_pd.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling package constants_pkg
+-- Compiling package alu_sv_unit
+-- Importing package constants_pkg
+-- Compiling module alu
+-- Compiling module assign_xor
+-- Compiling module reg_rst
+-- Compiling module three_stage_pipeline
+-- Compiling module pd0
+-- Compiling module clockgen
+-- Compiling module design_wrapper
+-- Compiling module top
 
-For each PD, a set of scripts are provided that compile, simulate, and test the hardware design. 
-These scripts can be found under each PD's directory (`pd*/verif/scripts`). 
+Top level modules:
+	alu
+	reg_rst
+	three_stage_pipeline
+	top
+make: Leaving directory '/eecs/home/kaushika/EECS-4201-project/project/pd0/verif/scripts'
+```
 
-For each PD, there are specific test cases that the design must 
+Once you have finished the compilation, you can run the simulation by executing the following command:
+```
+make run -C verif/scripts/ VERILATOR=1
+```
+
+The above command will re-compile and run the simulation. The output after this command should look something like this:
+
+```
+###########
+#  clk = 0
+# ** Fatal: [ALU] Probe signals not defined
+#    Time: 1 ps  Scope: top.alu_test File: /eecs/home/kaushika/EECS-4201-project/project/pd0/verif/tests/test_pd.sv Line: 102
+# ** Note: $finish    : /eecs/home/kaushika/EECS-4201-project/project/pd0/verif/tests/test_pd.sv(102)
+#    Time: 1 ps  Iteration: 1  Instance: /top
+# End time: 14:11:49 on Aug 21,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+make: Leaving directory '/eecs/home/kaushika/EECS-4201-project/project/pd0/verif/scripts'
+```
+This is expected as the probe signals are missing and need to filled in. Once you have the probe signals setup, you should see a `pd.vcd` waveform file generated that you can view using `gtkwave` or the ModelSim GUI.
 
 
+For PD1 - PD6, you can follow the same steps as above to build and run the design simulation. Note that the build command takes an additional command line switch `TEST=` which specifies the RISC-V test program to load in memory. These tests can be found in `pd*/verif/data/test*.x`.
+For example, if you want to load the `pd*/verif/data/test2.x` program in memory and simulate its execution, then execute the following command:
+```
+make run -C verif/scripts/ VERILATOR=1 TEST=test2
+```
 
+### Step 4: Debugging utilities 
+The build scripts have a few helpful command line switches to help with your design debugging efforts for PD1-PD6. Note that these are intended to establish a starting point for your debugging efforts. To perform in-depth debugging of your design and identify design bugs, you must rely on viewing waveforms of your hardware simulations using ModelSim or Verilator. 
 
+As an example, open `pd1/verif/scripts/Makefile`. There are two environment variables that will be useful: `PATTERN_DUMP` and `PATTERN_CHECK`.
+`PATTERN_DUMP` will dump out the signals defined in the corresponding `probes.svh` file and `PATTERN_CHECK` will check the signals defined in `probes.svh` against the golden patterns stored in `pd*/verif/data/*.pattern`.
+To enable the signal dumps, execute the following command:
+```
+make run -C verif/scripts/ VERILATOR=1 TEST=test1 PATTERN_DUMP=1
+```
+This will generate a `test1.dump` file in the current working directory. 
+
+To enable the signal pattern checks, execute the following:
+```
+make run -C verif/scripts/ VERILATOR=1 TEST=test1 PATTERN_CHECK=1
+```
+If your design is correct, this should return `Checks passed`. Otherwise, the faulting pattern will be reported. Using this faulting pattern, you can begin a deeper debug exercise to identify logic bugs in your design.
+
+For more information on the pattern dumping and checking logic, refer to the `pd*/verif/tests/pattern_dump.h` and `pd/*/verif/tests/pattern_check.h` files respectively.
+
+In addition to the above debugging utilities, it is also important to pay **close attention to the warning messages emitted by ModelSim/Verilator compiler**. These warnings are also useful to uncover unintended logic bugs that may pass compilation but expose a subtle logic bug resulting in incorrect outputs. 
+
+### Step 5: Submitting your design
+
+Once you have validated your design against the tests in `pd*/verif/data/test*.x`, you are ready to submit your design. 
+To create a zip file, you can execute the following command:
+```
+make package -C verif/scripts/ VSIM=1 PD=<name of PD> TEAM=<team-name>
+```
+This should create a `package.vsim.<name-of-pd>.<team-name>.tar.gz` file in `pd*/verif/scripts` directory. You must upload this `package.vsim.<name-of-pd>.<team-name>.tar.gz` file in EClass. 
+For example, assume your team name is **riscy** and you are submitting the design for PD3. Then execute the following command:
+```
+make package -C verif/scripts/ VSIM=1 PD=pd3 TEAM=riscy
+```
+This will create `package.vsim.pd3.riscy.tar.gz` that you will upload in EClass.
+
+### Grading scheme
+
+For each PD, you will be evaluated on the following components:
+
+|Component|Weight|
+|---------|------|
+|Code quality|35%|
+|Correctness| 65%|
+
+For code quality, please adhere to the programming styles and guidelines described [here](https://www.systemverilog.io/verification/styleguide/)
