@@ -9,3 +9,5 @@ endif
 
 make_sim_dir:
 	mkdir -p $(SIM_ROOT)
+package:
+	tar czvf package.$(SIMULATOR).$(PD).$(TEAM).tar.gz -C $(CL_ROOT) ./design/code ./design/probes.svh ./verif/scripts/design.f
