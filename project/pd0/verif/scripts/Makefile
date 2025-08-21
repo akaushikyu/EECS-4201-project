@@ -1,7 +1,7 @@
 # set up appropriate variables
 
 # test name. Set to test_null only if TEST is not specified
-export TEST ?= test_null
+export TEST ?= test_pd0
 
 export SCRIPTS_DIR = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 export CL_ROOT     = $(realpath $(SCRIPTS_DIR)/../../)

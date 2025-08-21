@@ -1,3 +1,4 @@
+constants_pkg.sv
 alu.sv
 assign_xor.sv
 reg_rst.sv

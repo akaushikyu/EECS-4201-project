@@ -1,0 +1,30 @@
+SRCLIST = $(shell cat $(CL_ROOT)/verif/scripts/design.f)
+SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv $(CL_ROOT)/verif/tests/test_pd0.sv
+VFLAGS = -sv
+TOP = top
+_CFLAGS=
+PROG=
+
+VCD ?= 0
+
+ifeq ($(VCD), 1)
+VFLAGS+= --trace
+_CFLAGS+= -DVCD -CFLAGS -DVCD_FILE=test_pd0.vcd
+endif
+
+ifneq ($(_CFLAGS), )
+CFLAGS=-CFLAGS $(_CFLAGS)
+endif
+
+# Normal tests, not c tests
+compile:
+	echo Vsim Compilation
+	mkdir -p $(SIM_DIR)
+	/pkgcache/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vlog -work $(CL_ROOT)/work -sv \
+		+incdir+$(CL_ROOT)/design/code +incdir+$(CL_ROOT)/design/ -stats=none $(SRC)
+run: compile
+	echo Vsim Run
+	vsim -c -do $(CL_ROOT)/verif/scripts/run.macro $(CL_ROOT)/work.top
+
+clean:
+	rm -rf $(SIM_DIR)

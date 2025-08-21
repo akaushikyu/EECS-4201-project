@@ -2,9 +2,9 @@ ifeq ($(VERILATOR), 1)
 	export SIMULATOR = verilator
 	include Makefile.verilator
 endif
-ifeq ($(MODELSIM), 1)
-    export SIMULATOR = modelsim
-    include Makefile.modeslims
+ifeq ($(VSIM), 1)
+    export SIMULATOR = vsim
+    include Makefile.vsim
 endif
 
 make_sim_dir:
