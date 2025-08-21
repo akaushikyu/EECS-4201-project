@@ -10,8 +10,7 @@
 //`define PROBE_D_RS2 // ??
 //`define PROBE_D_FUNCT7 // ??
 //`define PROBE_D_IMM // ??
-
-
+//`define PROBE_D_SHAMT // ??
 // ----  Probes  ----
 
 // ----  Top module  ----

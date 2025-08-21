@@ -16,8 +16,9 @@
  * 5) 5-bit wide source 2 register ID rs2_o
  * 6) 7-bit wide funct7 funct7_o
  * 7) 3-bit wide funct3 funct3_o
- * 8) 20-bit wide immediiate imm_o
- * 9) 7-bit width opcode
+ * 8) 32-bit wide immediate imm_o
+ * 9) 5-bit wide shift amount shamt_o
+ * 10) 7-bit width opcode_o
  */
 
 `include "constants.svh"
@@ -41,6 +42,7 @@ module decode #(
     output logic [4:0] rs2_o,
     output logic [6:0] funct7_o,
     output logic [2:0] funct3_o,
+    output logic [4:0] shamt_o,
     output logic [DWIDTH-1:0] imm_o
 );	
 
