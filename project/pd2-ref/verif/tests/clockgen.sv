@@ -18,14 +18,12 @@ module clockgen(
   output reg clk,
   output reg rst
 );
-  // logic only for iverilog to set clock
-  `ifdef IVERILOG_OR_XSIM
+
   initial begin
     clk = 0;
     rst = 1;
     forever #1 clk = !clk;
   end
-  `endif
 
   // common logic for iverilog and verilator
   integer counter = 0;

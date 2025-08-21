@@ -25,7 +25,7 @@ module memory #(
   // inputs
   input logic clk,
   input logic rst,
-  input logic [AWIDTH-1:0] addr_i = BASE_ADDR,
+  input logic [AWIDTH-1:0] addr_i,
   input logic [DWIDTH-1:0] data_i,
   input logic read_en_i,
   input logic write_en_i,
@@ -38,43 +38,26 @@ module memory #(
   // Byte-addressable memory
   logic [7:0] main_memory [0:`MEM_DEPTH];  // Byte-addressable memory
   logic [AWIDTH-1:0] address;
+  assign address = addr_i - BASE_ADDR; 
 
   initial begin
     $readmemh(`MEM_PATH, temp_memory);
-    address = BASE_ADDR;
     // Load data from temp_memory into main_memory
     for (int i = 0; i < `LINE_COUNT; i++) begin
-      main_memory[address]     = temp_memory[i][7:0];
-      main_memory[address + 1] = temp_memory[i][15:8];
-      main_memory[address + 2] = temp_memory[i][23:16];
-      main_memory[address + 3] = temp_memory[i][31:24];
-      address = address + 4;
+      main_memory[4*i]     = temp_memory[i][7:0];
+      main_memory[4*i + 1] = temp_memory[i][15:8];
+      main_memory[4*i + 2] = temp_memory[i][23:16];
+      main_memory[4*i + 3] = temp_memory[i][31:24];
     end
         $display("IMEMORY: Loaded %0d 32-bit words from %s", `LINE_COUNT, `MEM_PATH);
-        address = BASE_ADDR;
-  end
-
-  /*
-   * Process definitions to be filled by 
-   * student below....
-   *
-   */
-
-  always_ff @(posedge clk) begin
-      if (rst) begin
-          address <= BASE_ADDR;
-      end
-      else begin
-          address <= address + 4;
-      end
   end
  
   // Combinational logic for reading data based on the input 'addr'
   always_comb begin
-    data_o = {main_memory[addr_i + 3],
-                main_memory[addr_i + 2],
-                main_memory[addr_i + 1],
-                main_memory[addr_i]};
+    data_o = {main_memory[address + 3],
+                main_memory[address + 2],
+                main_memory[address + 1],
+                main_memory[address]};
     if (read_en_i) begin
         data_vld_o = 1'b1;
     end
@@ -86,13 +69,11 @@ module memory #(
   // Synchronous logic for writing data to memory
   always_ff @(posedge clk) begin
     if (write_en_i) begin 
-        main_memory[addr_i]     <= data_i[7:0];
-        main_memory[addr_i + 1] <= data_i[15:8];
-        main_memory[addr_i + 2] <= data_i[23:16];
-        main_memory[addr_i + 3] <= data_i[31:24];
+        main_memory[address]     <= data_i[7:0];
+        main_memory[address + 1] <= data_i[15:8];
+        main_memory[address + 2] <= data_i[23:16];
+        main_memory[address + 3] <= data_i[31:24];
     end
   end
-
-
 
 endmodule : memory

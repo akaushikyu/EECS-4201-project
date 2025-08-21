@@ -53,8 +53,9 @@ module decode #(
 	assign rd_o = insn_i[11:7];
 	assign funct3_o = insn_i[14:12];
 	assign funct7_o = insn_i[31:25];	
-	
-    logic [6:0] opcode = insn_i[6:0];
+
+	logic [6:0] opcode;
+	assign opcode = insn_i[6:0];
 	assign opcode_o = opcode;
 
 	always_comb begin

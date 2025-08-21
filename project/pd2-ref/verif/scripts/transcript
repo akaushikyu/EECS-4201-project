@@ -1,0 +1,19 @@
+# vsim -suppress 3839 -c -do "/eecs/home/kaushika/EECS-4201-project/project/pd2-ref/verif/scripts/run.macro" /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.top 
+# Start time: 16:01:52 on Aug 21,2025
+# Loading sv_std.std
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.top
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.clockgen
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.design_wrapper
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.pd2
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.fetch
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.memory
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.decode_sv_unit
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.decode
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.control_sv_unit
+# Loading /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/work.control
+# do /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/verif/scripts/run.macro
+# IMEMORY: Loaded 39 32-bit words from /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/verif/data/SimpleAdd.x
+# ** Note: $finish    : /eecs/home/kaushika/EECS-4201-project/project/pd2-ref/verif/tests/clockgen.sv(38)
+#    Time: 100001 ps  Iteration: 1  Instance: /top/clkg
+# End time: 16:01:53 on Aug 21,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
