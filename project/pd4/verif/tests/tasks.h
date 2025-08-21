@@ -91,14 +91,14 @@ task check_R;
     read_rs1_data   = p[`__R_READ_RS1_DATA];
     read_rs2_data   = p[`__R_READ_RS2_DATA];
     if(
-      (^read_rs1 !== 1'bx && read_rs1 !== dut.core.`R_READ_RS1) ||
-      (^read_rs2 !== 1'bx && read_rs2 !== dut.core.`R_READ_RS2) ||
-      (^read_rs1_data !== 1'bx && read_rs1_data !== dut.core.`R_READ_RS1_DATA) ||
-      (^read_rs2_data !== 1'bx && read_rs2_data !== dut.core.`R_READ_RS2_DATA) 
+      (^read_rs1 !== 1'bx && read_rs1 !== dut.core.`PROBE_R_READ_RS1) ||
+      (^read_rs2 !== 1'bx && read_rs2 !== dut.core.`PROBE_R_READ_RS2) ||
+      (^read_rs1_data !== 1'bx && read_rs1_data !== dut.core.`PROBE_R_READ_RS1_DATA) ||
+      (^read_rs2_data !== 1'bx && read_rs2_data !== dut.core.`PROBE_R_READ_RS2_DATA) 
     ) begin
       $sformat(msg, "R stage mismatch: expected READ_RS1=%x, READ_RS2=%x, READ_RS1_DATA=%x, READ_RS2_DATA=%x, got READ_RS1=%x, READ_RS2=%x, READ_RS1_DATA=%x, READ_RS2_DATA=%x", 
         read_rs1, read_rs2, read_rs1_data, read_rs2_data,
-        dut.core.`R_READ_RS1, dut.core.`R_READ_RS2, dut.core.`R_READ_RS1_DATA, dut.core.`R_READ_RS2_DATA);
+        dut.core.`PROBE_R_READ_RS1, dut.core.`PROBE_R_READ_RS2, dut.core.`PROBE_R_READ_RS1_DATA, dut.core.`PROBE_R_READ_RS2_DATA);
       res = 0;
     end else begin
       res = 1;
@@ -122,13 +122,13 @@ task check_E;
     alu_res         = p[`__E_ALU_RES];
     br_taken        = p[`__E_BR_TAKEN];
     if(
-      (^pc !== 1'bx && pc !== dut.core.`E_PC) ||
-      (^alu_res !== 1'bx && alu_res !== dut.core.`E_ALU_RES) ||
-      (^br_taken !== 1'bx && br_taken !== dut.core.`E_BR_TAKEN) 
+      (^pc !== 1'bx && pc !== dut.core.`PROBE_E_PC) ||
+      (^alu_res !== 1'bx && alu_res !== dut.core.`PROBE_E_ALU_RES) ||
+      (^br_taken !== 1'bx && br_taken !== dut.core.`PROBE_E_BR_TAKEN) 
     ) begin
       $sformat(msg, "E stage mismatch: expected PC=%x, ALU_RES=%x, BR_TAKEN=%x, got PC=%x, ALU_RES=%x, BR_TAKEN=%x", 
         pc, alu_res, br_taken,
-        dut.core.`E_PC, dut.core.`E_ALU_RES, dut.core.`E_BR_TAKEN);
+        dut.core.`PROBE_E_PC, dut.core.`PROBE_E_ALU_RES, dut.core.`PROBE_E_BR_TAKEN);
       res = 0;
     end else begin
       res = 1;
@@ -155,15 +155,15 @@ task check_M;
     size_encoded    = p[`__M_SIZE_ENCODED];
     data            = p[`__M_DATA];
     if(
-      (^pc !== 1'bx && pc !== dut.core.`M_PC) ||
-      (^address !== 1'bx && address !== dut.core.`M_ADDRESS) ||
-      (^rw !== 1'bx && rw !== dut.core.`M_RW) ||
-      (^size_encoded !== 1'bx && size_encoded !== dut.core.`M_SIZE_ENCODED) ||
-      (^data !== 1'bx && data !== dut.core.`M_DATA) 
+      (^pc !== 1'bx && pc !== dut.core.`PROBE_M_PC) ||
+      (^address !== 1'bx && address !== dut.core.`PROBE_M_ADDRESS) ||
+      (^rw !== 1'bx && rw !== dut.core.`PROBE_M_RW) ||
+      (^size_encoded !== 1'bx && size_encoded !== dut.core.`PROBE_M_SIZE_ENCODED) ||
+      (^data !== 1'bx && data !== dut.core.`PROBE_M_DATA) 
     ) begin
       $sformat(msg, "M stage mismatch: expected PC=%x, ADDRESS=%x, RW=%x, SIZE_ENCODED=%x, DATA=%x, got PC=%x, ADDRESS=%x, RW=%x, SIZE_ENCODED=%x, DATA=%x", 
         pc, address, rw, size_encoded, data,
-        dut.core.`M_PC, dut.core.`M_ADDRESS, dut.core.`M_RW, dut.core.`M_SIZE_ENCODED, dut.core.`M_DATA);
+        dut.core.`PROBE_M_PC, dut.core.`PROBE_M_ADDRESS, dut.core.`PROBE_M_RW, dut.core.`PROBE_M_SIZE_ENCODED, dut.core.`PROBE_M_DATA);
       res = 0;
     end else begin
       res = 1;
@@ -189,14 +189,14 @@ task check_W;
     destination     = p[`__W_DESTINATION];
     data            = p[`__W_DATA];
     if(
-      (^pc !== 1'bx && pc !== dut.core.`W_PC) ||
-      (^enable !== 1'bx && enable !== dut.core.`W_ENABLE) ||
-      (^destination !== 1'bx && destination !== dut.core.`W_DESTINATION) ||
-      (^data !== 1'bx && data !== dut.core.`W_DATA) 
+      (^pc !== 1'bx && pc !== dut.core.`PROBE_W_PC) ||
+      (^enable !== 1'bx && enable !== dut.core.`PROBE_W_ENABLE) ||
+      (^destination !== 1'bx && destination !== dut.core.`PROBE_W_DESTINATION) ||
+      (^data !== 1'bx && data !== dut.core.`PROBE_W_DATA) 
     ) begin
       $sformat(msg, "W stage mismatch: expected PC=%x, ENABLE=%x, DESTINATION=%x, DATA=%x, got PC=%x, ENABLE=%x, DESTINATION=%x, DATA=%x", 
         pc, enable, destination, data,
-        dut.core.`W_PC, dut.core.`W_ENABLE, dut.core.`W_DESTINATION, dut.core.`W_DATA);
+        dut.core.`PROBE_W_PC, dut.core.`PROBE_W_ENABLE, dut.core.`PROBE_W_DESTINATION, dut.core.`PROBE_W_DATA);
       res = 0;
     end else begin
       res = 1;

@@ -1,7 +1,7 @@
 # set up appropriate variables
 
 # test name. Set to test_null only if TEST is not specified
-export TEST ?= test_null
+export TEST ?= test_pd
 
 export SCRIPTS_DIR = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 export CL_ROOT     = $(realpath $(SCRIPTS_DIR)/../../)
@@ -13,7 +13,7 @@ export SIM_DIR     = $(SIM_ROOT)/$(TEST)
 all: make_sim_dir compile run
 
 # define parameters
-MEM_PATH              ?= $(CL_ROOT)/verif/data/SimpleAdd.x
+MEM_PATH              ?= $(CL_ROOT)/verif/data/test1.x
 MEM_PATH_NOT_DIR			:= $(notdir $(MEM_PATH))
 LINE_COUNT            ?= $(shell echo `wc -l < $(MEM_PATH)`)
 MEM_PATH_STR          ?= \"$(abspath $(MEM_PATH))\"

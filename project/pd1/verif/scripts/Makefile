@@ -13,7 +13,7 @@ export SIM_DIR     = $(SIM_ROOT)/$(TEST)
 all: make_sim_dir compile run
 
 # define parameters
-MEM_PATH              ?= $(CL_ROOT)/verif/data/rv32ui-p-add.x
+MEM_PATH              ?= $(CL_ROOT)/verif/data/test1.x
 MEM_PATH_NOT_DIR			:= $(notdir $(MEM_PATH))
 LINE_COUNT            ?= $(shell echo `wc -l < $(MEM_PATH)`)
 MEM_PATH_STR          ?= \"$(abspath $(MEM_PATH))\"

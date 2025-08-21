@@ -91,14 +91,14 @@ task check_R;
     read_rs1_data   = p[`__R_READ_RS1_DATA];
     read_rs2_data   = p[`__R_READ_RS2_DATA];
     if(
-      (^read_rs1 !== 1'bx && read_rs1 !== dut.core.`R_READ_RS1) ||
-      (^read_rs2 !== 1'bx && read_rs2 !== dut.core.`R_READ_RS2) ||
-      (^read_rs1_data !== 1'bx && read_rs1_data !== dut.core.`R_READ_RS1_DATA) ||
-      (^read_rs2_data !== 1'bx && read_rs2_data !== dut.core.`R_READ_RS2_DATA) 
+      (^read_rs1 !== 1'bx && read_rs1 !== dut.core.`PROBE_R_READ_RS1) ||
+      (^read_rs2 !== 1'bx && read_rs2 !== dut.core.`PROBE_R_READ_RS2) ||
+      (^read_rs1_data !== 1'bx && read_rs1_data !== dut.core.`PROBE_R_READ_RS1_DATA) ||
+      (^read_rs2_data !== 1'bx && read_rs2_data !== dut.core.`PROBE_R_READ_RS2_DATA) 
     ) begin
       $sformat(msg, "R stage mismatch: expected READ_RS1=%x, READ_RS2=%x, READ_RS1_DATA=%x, READ_RS2_DATA=%x, got READ_RS1=%x, READ_RS2=%x, READ_RS1_DATA=%x, READ_RS2_DATA=%x", 
         read_rs1, read_rs2, read_rs1_data, read_rs2_data,
-        dut.core.`R_READ_RS1, dut.core.`R_READ_RS2, dut.core.`R_READ_RS1_DATA, dut.core.`R_READ_RS2_DATA);
+        dut.core.`PROBE_R_READ_RS1, dut.core.`PROBE_R_READ_RS2, dut.core.`PROBE_R_READ_RS1_DATA, dut.core.`PROBE_R_READ_RS2_DATA);
       res = 0;
     end else begin
       res = 1;
@@ -122,13 +122,13 @@ task check_E;
     alu_res         = p[`__E_ALU_RES];
     br_taken        = p[`__E_BR_TAKEN];
     if(
-      (^pc !== 1'bx && pc !== dut.core.`E_PC) ||
-      (^alu_res !== 1'bx && alu_res !== dut.core.`E_ALU_RES) ||
-      (^br_taken !== 1'bx && br_taken !== dut.core.`E_BR_TAKEN) 
+      (^pc !== 1'bx && pc !== dut.core.`PROBE_E_PC) ||
+      (^alu_res !== 1'bx && alu_res !== dut.core.`PROBE_E_ALU_RES) ||
+      (^br_taken !== 1'bx && br_taken !== dut.core.`PROBE_E_BR_TAKEN) 
     ) begin
       $sformat(msg, "E stage mismatch: expected PC=%x, ALU_RES=%x, BR_TAKEN=%x, got PC=%x, ALU_RES=%x, BR_TAKEN=%x", 
         pc, alu_res, br_taken,
-        dut.core.`E_PC, dut.core.`E_ALU_RES, dut.core.`E_BR_TAKEN);
+        dut.core.`PROBE_E_PC, dut.core.`PROBE_E_ALU_RES, dut.core.`PROBE_E_BR_TAKEN);
       res = 0;
     end else begin
       res = 1;

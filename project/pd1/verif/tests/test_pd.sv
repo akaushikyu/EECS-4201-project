@@ -12,9 +12,9 @@ module top;
     .reset(reset)
   );
 
-`ifdef PROBE_ADDR `ifdef PROBE_DATA_IN `ifdef PROBE_DATA_OUT `ifdef PROBE_READ_EN `ifdef PROBE_WRITE_EN
+`ifdef PROBE_ADDR `ifdef PROBE_DATA_IN `ifdef PROBE_DATA_OUT `ifdef PROBE_READ_EN `ifdef PROBE_WRITE_EN `ifdef PROBE_F_PC `ifdef PROBE_F_INSN
   `define PROBE_PD1_OK
-`endif `endif `endif `endif `endif
+`endif `endif `endif `endif `endif `endif `endif
 
 `ifdef PROBE_PD1_OK
   `else 

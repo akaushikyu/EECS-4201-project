@@ -25,7 +25,9 @@
 
 `include "constants.svh"
 
-module control (
+module control #(
+	parameter int DWIDTH=32
+)(
 	// inputs
     input logic [DWIDTH-1:0] insn_i,
     input logic [6:0] opcode_i,

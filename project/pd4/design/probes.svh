@@ -12,28 +12,28 @@
 //`define PROBE_D_IMM         // ??
 //`define PROBE_D_SHAMT       // ??
 
-//`define R_WRITE_ENABLE      // ??
-//`define R_WRITE_DESTINATION // ??
-//`define R_WRITE_DATA        // ??
-//`define R_READ_RS1          // ??
-//`define R_READ_RS2          // ??
-//`define R_READ_RS1_DATA     // ??
-//`define R_READ_RS2_DATA     // ??
+//`define PROBE_R_WRITE_ENABLE      // ??
+//`define PROBE_R_WRITE_DESTINATION // ??
+//`define PROBE_R_WRITE_DATA        // ??
+//`define PROBE_R_READ_RS1          // ??
+//`define PROBE_R_READ_RS2          // ??
+//`define PROBE_R_READ_RS1_DATA     // ??
+//`define PROBE_R_READ_RS2_DATA     // ??
 
-//`define E_PC                // ??
-//`define E_ALU_RES           // ??
-//`define E_BR_TAKEN          // ??
+//`define PROBE_E_PC                // ??
+//`define PROBE_E_ALU_RES           // ??
+//`define PROBE_E_BR_TAKEN          // ??
 
-//`define M_PC                // ??
-//`define M_ADDRESS           // ??
-//`define M_RW                // ??
-//`define M_SIZE_ENCODED      // ??
-//`define M_DATA              // ??
+//`define PROBE_M_PC                // ??
+//`define PROBE_M_ADDRESS           // ??
+//`define PROBE_M_RW                // ??
+//`define PROBE_M_SIZE_ENCODED      // ??
+//`define PROBE_M_DATA              // ??
 
-//`define W_PC                // ??
-//`define W_ENABLE            // ??
-//`define W_DESTINATION       // ??
-//`define W_DATA              // ??
+//`define PROBE_W_PC                // ??
+//`define PROBE_W_ENABLE            // ??
+//`define PROBE_W_DESTINATION       // ??
+//`define PROBE_W_DATA              // ??
 
 // ----  Probes  ----
 

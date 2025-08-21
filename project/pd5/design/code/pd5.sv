@@ -1,5 +1,5 @@
 /*
- * Module: pd4
+ * Module: pd5
  *
  * Description: Top level module that will contain sub-module instantiations.
  *
@@ -8,7 +8,7 @@
  * 2) reset signal
  */
 
-module pd4 #(
+module pd5 #(
     parameter int AWIDTH = 32,
     parameter int DWIDTH = 32)(
     input logic clk,
@@ -21,4 +21,4 @@ module pd4 #(
   *
   */
 
-endmodule : pd4
+endmodule : pd5

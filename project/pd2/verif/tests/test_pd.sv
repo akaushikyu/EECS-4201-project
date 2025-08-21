@@ -12,9 +12,9 @@ module top;
     .reset(reset)
   );
 
-`ifdef PROBE_F_PC `ifdef PROBE_F_INSN `ifdef PROBE_D_PC `ifdef PROBE_D_OPCODE `ifdef PROBE_D_RD `ifdef PROBE_D_FUNCT3 `ifdef PROBE_D_RS1 `ifdef PROBE_D_RS2 `ifdef PROBE_D_FUNCT7 `ifdef  PROBE_D_IMM
+`ifdef PROBE_F_PC `ifdef PROBE_F_INSN `ifdef PROBE_D_PC `ifdef PROBE_D_OPCODE `ifdef PROBE_D_RD `ifdef PROBE_D_FUNCT3 `ifdef PROBE_D_RS1 `ifdef PROBE_D_RS2 `ifdef PROBE_D_FUNCT7 `ifdef  PROBE_D_IMM `ifdef PROBE_D_SHAMT
   `define PROBE_PD2_OK
-`endif `endif `endif `endif `endif `endif `endif `endif `endif `endif
+`endif `endif `endif `endif `endif `endif `endif `endif `endif `endif `endif
 
 `ifdef PROBE_PD2_OK
   `else 

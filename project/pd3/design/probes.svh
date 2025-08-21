@@ -12,17 +12,17 @@
 //`define PROBE_D_IMM // ??
 //`define PROBE_D_SHAMT // ??
 
-//`define R_WRITE_ENABLE      // ??
-//`define R_WRITE_DESTINATION // ??
-//`define R_WRITE_DATA        // ??
-//`define R_READ_RS1          // ??
-//`define R_READ_RS2          // ??
-//`define R_READ_RS1_DATA     // ??
-//`define R_READ_RS2_DATA     // ??
+//`define PROBE_R_WRITE_ENABLE      // ??
+//`define PROBE_R_WRITE_DESTINATION // ??
+//`define PROBE_R_WRITE_DATA        // ??
+//`define PROBE_R_READ_RS1          // ??
+//`define PROBE_R_READ_RS2          // ??
+//`define PROBE_R_READ_RS1_DATA     // ??
+//`define PROBE_R_READ_RS2_DATA     // ??
 
-//`define E_PC                // ??
-//`define E_ALU_RES           // ??
-//`define E_BR_TAKEN          // ??
+//`define PROBE_E_PC                // ??
+//`define PROBE_E_ALU_RES           // ??
+//`define PROBE_E_BR_TAKEN          // ??
 // ----  Probes  ----
 
 // ----  Top module  ----

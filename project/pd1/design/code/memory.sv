@@ -39,12 +39,10 @@ module memory #(
   // Byte-addressable memory
   logic [7:0] main_memory [0:`MEM_DEPTH];  // Byte-addressable memory
   logic [AWIDTH-1:0] address;
-
   assign address = addr_i - BASE_ADDR;
 
   initial begin
     $readmemh(`MEM_PATH, temp_memory);
-    address = BASE_ADDR;
     // Load data from temp_memory into main_memory
     for (int i = 0; i < `LINE_COUNT; i++) begin
       main_memory[4*i]     = temp_memory[i][7:0];
@@ -52,7 +50,7 @@ module memory #(
       main_memory[4*i + 2] = temp_memory[i][23:16];
       main_memory[4*i + 3] = temp_memory[i][31:24];
     end
-        $display("IMEMORY: Loaded %0d 32-bit words from %s", `LINE_COUNT, `MEM_PATH);
+    $display("IMEMORY: Loaded %0d 32-bit words from %s", `LINE_COUNT, `MEM_PATH);
   end
 
   /*

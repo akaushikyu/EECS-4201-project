@@ -1,5 +1,5 @@
 SRCLIST = $(shell cat $(CL_ROOT)/verif/scripts/design.f)
-SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv $(CL_ROOT)/verif/tests/test_pd0.sv
+SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv $(CL_ROOT)/verif/tests/test_pd.sv
 VFLAGS = -sv
 TOP = top
 _CFLAGS=
@@ -9,7 +9,7 @@ VCD ?= 0
 
 ifeq ($(VCD), 1)
 VFLAGS+= --trace
-_CFLAGS+= -DVCD -CFLAGS -DVCD_FILE=test_pd0.vcd
+_CFLAGS+= -DVCD -CFLAGS -DVCD_FILE=test_pd.vcd
 endif
 
 ifneq ($(_CFLAGS), )
