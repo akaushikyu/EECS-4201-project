@@ -1,7 +1,8 @@
 /*
  * Module: memory
  *
- * Description: Byte-addressable memory implementation. Supports both read and write.
+ * Description: Byte-addressable memory implementation. Supports both read and write operations.
+ * Reads are combinational and writes are performed on the rising clock edge.
  *
  * Inputs:
  * 1) clk
@@ -39,19 +40,19 @@ module memory #(
   logic [7:0] main_memory [0:`MEM_DEPTH];  // Byte-addressable memory
   logic [AWIDTH-1:0] address;
 
+  assign address = addr_i - BASE_ADDR;
+
   initial begin
     $readmemh(`MEM_PATH, temp_memory);
     address = BASE_ADDR;
     // Load data from temp_memory into main_memory
     for (int i = 0; i < `LINE_COUNT; i++) begin
-      main_memory[address]     = temp_memory[i][7:0];
-      main_memory[address + 1] = temp_memory[i][15:8];
-      main_memory[address + 2] = temp_memory[i][23:16];
-      main_memory[address + 3] = temp_memory[i][31:24];
-      address = address + 4;
+      main_memory[4*i]     = temp_memory[i][7:0];
+      main_memory[4*i + 1] = temp_memory[i][15:8];
+      main_memory[4*i + 2] = temp_memory[i][23:16];
+      main_memory[4*i + 3] = temp_memory[i][31:24];
     end
         $display("IMEMORY: Loaded %0d 32-bit words from %s", `LINE_COUNT, `MEM_PATH);
-        address = BASE_ADDR;
   end
 
   /*
