@@ -2,7 +2,7 @@
  * Module: decode
  *
  * Description: Decode stage
- * 
+ *
  * Inputs:
  * 1) clk
  * 2) rst signal
@@ -32,7 +32,7 @@ module decode #(
 	input logic rst,
 	input logic [DWIDTH - 1:0] insn_i,
 	input logic [DWIDTH - 1:0] pc_i,
-    
+
     // outputs
     output logic [AWIDTH-1:0] pc_o,
     output logic [DWIDTH-1:0] insn_o,
@@ -47,7 +47,7 @@ module decode #(
 );	
 
     /*
-     * Process definitions to be filled by 
+     * Process definitions to be filled by
      * student below...
      */
 

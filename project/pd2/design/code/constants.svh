@@ -1,5 +1,5 @@
 /*
- * Good practice to define constants and refer to them in the 
+ * Good practice to define constants and refer to them in the
  * design files. An example of some constants are provided to you
  * as a starting point
  *

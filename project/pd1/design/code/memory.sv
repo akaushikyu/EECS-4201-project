@@ -2,7 +2,7 @@
  * Module: memory
  *
  * Description: Byte-addressable memory implementation. Supports both read and write.
- * 
+ *
  * Inputs:
  * 1) clk
  * 2) rst signal
@@ -33,8 +33,8 @@ module memory #(
   output logic [DWIDTH-1:0] data_o,
   output logic data_vld_o
 );
- 
-  logic [DWIDTH-1:0] temp_memory [0:`MEM_DEPTH]; 
+
+  logic [DWIDTH-1:0] temp_memory [0:`MEM_DEPTH];
   // Byte-addressable memory
   logic [7:0] main_memory [0:`MEM_DEPTH];  // Byte-addressable memory
   logic [AWIDTH-1:0] address;
@@ -55,7 +55,7 @@ module memory #(
   end
 
   /*
-   * Process definitions to be filled by 
+   * Process definitions to be filled by
    * student below....
    *
    */

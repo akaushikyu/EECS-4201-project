@@ -1,6 +1,6 @@
 // ----  Probes  ----
-//`define PROBE_F_PC // ?? 
-//`define PROBE_F_INSN // ?? 
+//`define PROBE_F_PC // ??
+//`define PROBE_F_INSN // ??
 
 //`define PROBE_D_PC // ??
 //`define PROBE_D_OPCODE // ??
@@ -14,5 +14,5 @@
 // ----  Probes  ----
 
 // ----  Top module  ----
-`define TOP_MODULE  pd2 
+`define TOP_MODULE  pd2
 // ----  Top module  ----

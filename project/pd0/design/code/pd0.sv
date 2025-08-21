@@ -1,11 +1,11 @@
 /*
  * Module: pd0
  *
- * Description: Top level module that will contain sub-module instantiations. 
+ * Description: Top level module that will contain sub-module instantiations.
  * An instantiation of the assign_xor module is shown as an example. The other
  * modules must be instantiated similarly. Probes are defined, which will be used
  * to test This file also defines probes that will be used to test the design. Note
- * that the top level module should have only two inputs: clk and rest signals.  
+ * that the top level module should have only two inputs: clk and rest signals.
  *
  * Inputs:
  * 1) clk
@@ -18,7 +18,7 @@ module pd0 #(
     input logic clk,
     input logic reset
     );
- 
+
  // Probes that will be defined in probes.svh
  logic assign_xor_op1;
  logic assign_xor_op2;
@@ -31,7 +31,7 @@ module pd0 #(
  );
 
  /*
-  * Instantiate other submodules and 
+  * Instantiate other submodules and
   * probes. To be filled by student...
   *
   */

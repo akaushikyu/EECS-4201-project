@@ -2,7 +2,7 @@
  * Module: fetch
  *
  * Description: Fetch stage
- * 
+ *
  * Inputs:
  * 1) clk
  * 2) rst signal
@@ -25,7 +25,7 @@ module fetch #(
     output logic [DWIDTH - 1:0] insn_o
 );
     /*
-     * Process definitions to be filled by 
+     * Process definitions to be filled by
      * student below...
      */
 

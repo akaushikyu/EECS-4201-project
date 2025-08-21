@@ -3,7 +3,7 @@
  * Module: memory
  *
  * Description: Byte-addressable memory implementation. Supports both read and write.
- * 
+ *
  * Inputs:
  * 1) clk
  * 2) rst signal

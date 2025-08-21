@@ -1,10 +1,10 @@
 /*
  * Module: three_stage_pipeline
  *
- * A 3-stage pipeline (TSP) where the first stage performs an addition of two 
+ * A 3-stage pipeline (TSP) where the first stage performs an addition of two
  * operands (op1_i, op2_i) and registers the output, and the second stage computes
- * the difference between the output from the first stage and op1_i and registers the 
- * output. This means that the output (res_o) must be available two cycles after the 
+ * the difference between the output from the first stage and op1_i and registers the
+ * output. This means that the output (res_o) must be available two cycles after the
  * corresponding inputs have been observed on the rising clock edge
  *
  * Visually, the circuit should look like this:
@@ -13,7 +13,7 @@
  *                                                                                               <--    Stage 3    -->
  *                                    |------------------>|                    |
  * -- op1_i -->|                    | --> |         |     |                    |-->|         |   |                    |
- *             | pipeline registers |     | ALU add | --> | pipeline registers |   | ALU sub |-->| pipeline register  | -- res_o --> 
+ *             | pipeline registers |     | ALU add | --> | pipeline registers |   | ALU sub |-->| pipeline register  | -- res_o -->
  * -- op2_i -->|                    | --> |         |     |                    |-->|         |   |                    |
  *
  * Inputs:
@@ -36,7 +36,7 @@ parameter int DWIDTH = 8)(
     );
 
     /*
-     * Process definitions to be filled by 
+     * Process definitions to be filled by
      * student below...
      * [HINT] Instantiate the alu and reg_rst modules
      * and set up the necessary connections

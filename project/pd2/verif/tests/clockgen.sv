@@ -8,28 +8,19 @@
   `define RESET_CYCLES 5
 `endif
 
-`ifdef IVERILOG 
-  `define IVERILOG_OR_XSIM
-`elsif XSIM
-  `define IVERILOG_OR_XSIM
-`endif
-
 module clockgen(
-  output reg clk,
-  output reg rst
+  output logic clk,
+  output logic rst
 );
-  // logic only for iverilog to set clock
-  `ifdef IVERILOG_OR_XSIM
+
   initial begin
     clk = 0;
-    rst = 1;
     forever #1 clk = !clk;
   end
-  `endif
 
   // common logic for iverilog and verilator
   integer counter = 0;
-  always @(posedge clk) begin
+  always_ff @(posedge clk) begin
     counter <= counter + 1;
     if(counter < `RESET_CYCLES) begin
       rst <= 1;
@@ -54,4 +45,5 @@ module clockgen(
       end
     endfunction
   `endif
+
 endmodule

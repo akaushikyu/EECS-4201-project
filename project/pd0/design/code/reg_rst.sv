@@ -1,7 +1,7 @@
 /*
  * Module: reg_rst
  *
- * Description: A DWIDTH register implementation with 
+ * Description: A DWIDTH register implementation with
  * synchronous reset. Input is registered at the rising
  * edge of the clock.
  *
@@ -20,10 +20,10 @@ module reg_rst #(
     input logic rst,
     input logic [DWIDTH-1:0] in_i,
     output logic [DWIDTH-1:0] out_o
-); 
+);
     /*
-     * Process definitions to be filled by 
+     * Process definitions to be filled by
      * student below...
      */
 
-endmodule: reg_rst 
+endmodule: reg_rst

@@ -1,7 +1,7 @@
 /*
  * Module: pd2
  *
- * Description: Top level module that will contain sub-module instantiations. 
+ * Description: Top level module that will contain sub-module instantiations.
  *
  * Inputs:
  * 1) clk
@@ -16,7 +16,7 @@ module pd2 #(
 );
 
  /*
-  * Instantiate other submodules and 
+  * Instantiate other submodules and
   * probes. To be filled by student...
   *
   */

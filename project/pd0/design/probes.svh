@@ -10,5 +10,5 @@
 // ----  Probes  ----
 
 // ----  Top module  ----
-`define TOP_MODULE  pd0 
+`define TOP_MODULE  pd0
 // ----  Top module  ----

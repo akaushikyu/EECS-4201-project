@@ -1,7 +1,7 @@
 /*
  *
  * Module assign_xor
- * 
+ *
  * Takes two 1-bit inputs and computes the XOR operation
  *
  * Inputs:
@@ -17,7 +17,7 @@
      input logic op2_i,
      output logic res_o
  );
- 
+
  assign res_o = op1_i ^ op2_i;
 
  endmodule: assign_xor

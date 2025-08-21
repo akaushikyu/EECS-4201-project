@@ -7,7 +7,7 @@ module design_wrapper (
     input logic clk,
     input logic reset
  );
- // instantiate 
+ // instantiate
  `TOP_MODULE #(.DWIDTH(32)) core (
      .clk(clk),
      .reset(reset)

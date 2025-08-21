@@ -4,7 +4,7 @@
  * Description: This module sets the control bits (control path) based on the decoded
  * instruction. Note that this is part of the decode stage but housed in a separate
  * module for better readability, debug and design purposes.
- * 
+ *
  * Inputs:
  * 1) DWIDTH instruction ins_i
  * 2) 7-bit opcode opcode_i
@@ -45,7 +45,7 @@ module control (
 );
 
     /*
-     * Process definitions to be filled by 
+     * Process definitions to be filled by
      * student below...
      */
 
