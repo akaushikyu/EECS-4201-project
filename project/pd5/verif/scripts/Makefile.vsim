@@ -42,7 +42,7 @@ compile:
 		-stats=none $(SRC)
 
 write_macro_file:
-	rm $(CL_ROOT)/verif/scripts/run.macro
+	rm -f $(CL_ROOT)/verif/scripts/run.macro
 	echo -e "vcd file $(VCD_FILE_STR)\nvcd add -r /top/* \nrun -all" >> $(CL_ROOT)/verif/scripts/run.macro
 
 run: compile write_macro_file
