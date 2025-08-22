@@ -34,8 +34,9 @@ This will setup the working environment by setting up the paths to the simulator
 An expected output after executing this command should look like this:
 ```
 ===== EECS 4201 Course Environment Setup =====
-Location of project:  /Users/anirudhkaushik/REPOS/EECS-4201-project
+Location of project:  /cs/home/kaushika/EECS-4201-project
 Verilator version:  Verilator 5.038 2025-07-08 rev UNKNOWN.REV
+VSIM version:  Model Technology ModelSim - INTEL FPGA STARTER EDITION vsim 2020.1 Simulator 2020.02 Feb 28 2020
 ```
 ### Step 3: Build and run PD0
 Navigate to the `project/pd0` directory and execute the following command:
