@@ -9,6 +9,7 @@
  * 1) DWIDTH-wide input op1_i
  * 2) DWIDTH-wide input op2_i
  * 3) 2-bit selection signal sel_i
+ * (refer constants_pkg.sv for the selection signals)
  *
  * Outputs:
  * 1) DWIDTH-wide result res_o

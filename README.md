@@ -18,6 +18,8 @@ Please refer the READMEs for each PD below for a detailed description of the imp
 ## Getting started
 Note that the below steps assume a linux environment with ModelSim or Verilator installed. 
 
+### Step 0: Setup your workstation
+
 ### Step 1: Clone the repository
 ------------------------------------
 Open a terminal and execute the following command:
