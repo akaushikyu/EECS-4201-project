@@ -19,6 +19,7 @@ Please refer the READMEs for each PD below for a detailed description of the imp
 Note that the below steps assume a linux environment with ModelSim or Verilator installed. 
 
 ### Step 1: Clone the repository
+------------------------------------
 Open a terminal and execute the following command:
 ```
 git clone git@github.com:akaushikyu/EECS-4201-project.git
@@ -26,6 +27,7 @@ git clone git@github.com:akaushikyu/EECS-4201-project.git
 You should see a directory named `EECS-4201-project` in your current working directory.
 
 ### Step 2: Setup the environment
+------------------------------------
 Step into the `EECS-4201-project` and execute the following command: 
 ```
 source env.sh
@@ -39,6 +41,7 @@ Verilator version:  Verilator 5.038 2025-07-08 rev UNKNOWN.REV
 VSIM version:  Model Technology ModelSim - INTEL FPGA STARTER EDITION vsim 2020.1 Simulator 2020.02 Feb 28 2020
 ```
 ### Step 3: Build and run PD0
+------------------------------------
 Navigate to the `project/pd0` directory and execute the following command:
 ```
 make compile -C verif/scripts/ VSIM=1
@@ -106,6 +109,7 @@ make run -C verif/scripts/ VERILATOR=1 TEST=test2
 ```
 
 ### Step 4: Debugging utilities 
+------------------------------------
 The build scripts have a few helpful command line switches to help with your design debugging efforts for PD1-PD6. Note that these are intended to establish a starting point for your debugging efforts. To perform in-depth debugging of your design and identify design bugs, you must rely on viewing waveforms of your hardware simulations using ModelSim or Verilator. 
 
 As an example, open `pd1/verif/scripts/Makefile`. There are two environment variables that will be useful: `PATTERN_DUMP` and `PATTERN_CHECK`.
@@ -127,7 +131,7 @@ For more information on the pattern dumping and checking logic, refer to the `pd
 In addition to the above debugging utilities, it is also important to pay **close attention to the warning messages emitted by ModelSim/Verilator compiler**. These warnings are also useful to uncover unintended logic bugs that may pass compilation but expose a subtle logic bug resulting in incorrect outputs. 
 
 ### Step 5: Submitting your design
-
+------------------------------------
 Once you have validated your design against the tests in `pd*/verif/data/test*.x`, you are ready to submit your design. 
 To create a zip file, you can execute the following command:
 ```
@@ -141,7 +145,7 @@ make package -C verif/scripts/ VSIM=1 PD=pd3 TEAM=riscy
 This will create `package.vsim.pd3.riscy.tar.gz` that you will upload in EClass.
 
 ### Grading scheme
-
+------------------------------------
 For each PD, you will be evaluated on the following components:
 
 |Component|Weight|
