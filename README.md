@@ -159,3 +159,7 @@ For each PD, you will be evaluated on the following components:
 |Correctness| 65%|
 
 For code quality, please adhere to the programming styles and guidelines described [here](https://www.systemverilog.io/verification/styleguide/)
+
+### Acknowledgements
+------------------------------------
+This course project is inspired by UWaterloo's ECE 429/320/621 course project structure. 
