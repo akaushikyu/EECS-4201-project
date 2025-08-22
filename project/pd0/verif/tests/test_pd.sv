@@ -1,7 +1,7 @@
 /*
  * Module: top
  *
- * Description: Testbench that drives the probes and displays the signal changes 
+ * Description: Testbench that drives the probes and displays the signal changes
  */
 `include "probes.svh"
 
@@ -74,7 +74,7 @@ module top;
      assign_xor_res <= dut.core.`PROBE_ASSIGN_XOR_RES;
  end
 
-`ifdef PROBE_ALU_OP1 `ifdef PROBE_ALU_OP2 `ifdef PROBE_ALU_OP3 
+`ifdef PROBE_ALU_OP1 `ifdef PROBE_ALU_OP2 `ifdef PROBE_ALU_RES
     `define PROBE_ALU_OK
 `endif  `endif `endif
 `ifdef PROBE_ALU_OK
@@ -104,14 +104,14 @@ module top;
 `endif
 
 
-`ifdef PROBE_REG_IN, `ifdef PROBE_REG_OUT 
+`ifdef PROBE_REG_IN, `ifdef PROBE_REG_OUT
 `define PROBE_REG_OK
 `endif `endif
 `ifdef PROBE_REG_OK
   logic [31:0] reg_rst_inp;
   logic [31:0] reg_rst_out;
 
-  always_comb begin: reg_rst_input 
+  always_comb begin: reg_rst_input
       dut.core.`PROBE_REG_RST_INP = counter[31:0];
   end
   always_ff @(posedge clock) begin: reg_rst_test
@@ -155,10 +155,10 @@ module top;
 `endif
 
 
- `ifdef VCD 
+ `ifdef VCD
   initial begin
     $dumpfile(`VCD_FILE);
     $dumpvars;
   end
-  `endif 
+  `endif
 endmodule

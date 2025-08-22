@@ -1,4 +1,4 @@
-# PD0 -- Revisiting SystemVerilog and digital logic basics
+# PD0 - Revisiting SystemVerilog and digital logic basics
 
 ## Description
 

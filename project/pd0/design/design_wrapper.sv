@@ -12,4 +12,4 @@ module design_wrapper (
      .clk(clk),
      .reset(reset)
   );
-endmodule
+  endmodule : design_wrapper
