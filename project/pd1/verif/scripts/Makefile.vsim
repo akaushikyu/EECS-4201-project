@@ -20,7 +20,7 @@ endif
 compile:
 	echo Vsim Compilation
 	mkdir -p $(SIM_DIR)
-	/pkgcache/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vlog -work $(CL_ROOT)/work \
+	vlog -work $(CL_ROOT)/work \
 		-suppress 7061 \
 		-sv \
 		+incdir+$(CL_ROOT)/design/code \
