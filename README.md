@@ -104,10 +104,10 @@ The above command will re-compile and run the simulation. The output after this 
 # Errors: 1, Warnings: 0
 make: Leaving directory '/eecs/home/kaushika/EECS-4201-project/project/pd0/verif/scripts'
 ```
-This is expected as the probe signals are missing and need to filled in. Once you have the probe signals setup, you should see a `pd.vcd` waveform file generated that you can view using `gtkwave` or the ModelSim GUI.
+This is expected as the probe signals are missing and need to be filled in. Once you have the probe signals setup, you should see a `pd.vcd` waveform file generated that you can view using `gtkwave` or the ModelSim GUI.
 
 
-For PD1 - PD6, you can follow the same steps as above to build and run the design simulation. Note that the build command takes an additional command line switch `TEST=` which specifies the RISC-V test program to load in memory. These tests can be found in `pd*/verif/data/test*.x`.
+For PD1 - PD5, you can follow the same steps as above to build and run the design simulation. Note that the build command takes an additional command line switch `TEST=` which specifies the RISC-V test program to load in memory. These tests can be found in `pd*/verif/data/test*.x`.
 For example, if you want to load the `pd*/verif/data/test2.x` program in memory and simulate its execution, then execute the following command:
 ```
 make run -C verif/scripts/ VERILATOR=1 TEST=test2
@@ -134,6 +134,8 @@ If your design is correct, this should return `Checks passed`. Otherwise, the fa
 For more information on the pattern dumping and checking logic, refer to the `pd*/verif/tests/pattern_dump.h` and `pd/*/verif/tests/pattern_check.h` files respectively.
 
 In addition to the above debugging utilities, it is also important to pay **close attention to the warning messages emitted by ModelSim/Verilator compiler**. These warnings are also useful to uncover unintended logic bugs that may pass compilation but expose a subtle logic bug resulting in incorrect outputs. 
+
+We also provide a comprehensive collection of [benchmarks](rv32-bmarks) that you can use to stress your design. The benchmarks are of 2 flavors: (1) full program benchmarks and (2) synthetic benchmarks that stress individual functions. For each benchmark, there are 4 files: (1) `*.bin`: the program binary, (2) `*.c`: the C source file, (3) `*.elf`: the corresponding ELF file, (4) `*.objdump`: the object dump listing the sections and RISC-V instructions and location, (5) `*.raw`: instruction data organized in 128-bit lines (4 32-bit instructions per line), (6) `*.s`: Similar to `*.objdump` but lists only the RISC-V instructions, (7) `*.x`: lists only the instruction data where each line corresponds to one 32-bit instruction data. The `*.x` should be consumed by your design when initializing your instruction memory.
 
 ### Step 5: Submitting your design
 ------------------------------------
