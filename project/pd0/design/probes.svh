@@ -7,6 +7,7 @@
 // `define PROBE_ALU_OP1 // ??
 // `define PROBE_ALU_OP2 // ??
 // `define PROBE_ALU_RES // ??
+// `define PROBE_ALU_SEL // ??
 
 // `define PROBE_REG_IN  // ??
 // `define PROBE_REG_OUT // ??
