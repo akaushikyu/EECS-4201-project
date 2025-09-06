@@ -104,7 +104,7 @@ module top;
 `endif
 
 
-`ifdef PROBE_REG_IN, `ifdef PROBE_REG_OUT
+`ifdef PROBE_REG_IN `ifdef PROBE_REG_OUT
 `define PROBE_REG_OK
 `endif `endif
 `ifdef PROBE_REG_OK
@@ -112,18 +112,18 @@ module top;
   logic [31:0] reg_rst_out;
 
   always_comb begin: reg_rst_input
-      dut.core.`PROBE_REG_RST_INP = counter[31:0];
+      dut.core.`PROBE_REG_INP = counter[31:0];
   end
   always_ff @(posedge clock) begin: reg_rst_test
       if (reset_done) begin
-        $display("[REG_RST] inp=%b, out=%b", reg_rst_inp, reg_rst_out);
+        $display("[REG] inp=%b, out=%b", reg_rst_inp, reg_rst_out);
       end
-      reg_rst_inp <= dut.core.`PROBE_REG_RST_INP;
-      reg_rst_out <= dut.core.`PROBE_REG_RST_OUT;
+      reg_rst_inp <= dut.core.`PROBE_REG_INP;
+      reg_rst_out <= dut.core.`PROBE_REG_OUT;
   end
   `else
     always_ff @(posedge clock) begin: reg_rst_test
-        $fatal(1, "[REG_RST] Probe signals not defined");
+        $fatal(1, "[REG] Probe signals not defined");
     end
 `endif
 
@@ -146,7 +146,7 @@ module top;
       end
       tsp_op1 <= dut.core.`PROBE_TSP_OP1;
       tsp_op2 <= dut.core.`PROBE_TSP_OP2;
-      tsp_out <= dut.core.`PROBE_TSP_OUT;
+      tsp_out <= dut.core.`PROBE_TSP_RES;
   end
     `else
     always_ff @(posedge clock) begin: tsp_test
