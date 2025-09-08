@@ -22,9 +22,13 @@ compile:
 	mkdir -p $(SIM_DIR)
 	vlog -work $(CL_ROOT)/work -sv \
 		+incdir+$(CL_ROOT)/design/code +incdir+$(CL_ROOT)/design/ -stats=none $(SRC)
-run: compile
+write_macro_file:
+	rm -f $(CL_ROOT)/verif/scripts/run.macro
+	echo -e "vcd file $(VCD_FILE_STR)\nvcd add -r /top/* \nrun -all" >> $(CL_ROOT)/verif/scripts/run.macro 
+
+run: compile write_macro_file
 	echo Vsim Run
-	vsim -c -do $(CL_ROOT)/verif/scripts/run.macro $(CL_ROOT)/work.top
+	vsim -suppress 3839 -c -do $(CL_ROOT)/verif/scripts/run.macro $(CL_ROOT)/work.top
 
 clean:
 	rm -rf $(SIM_DIR)

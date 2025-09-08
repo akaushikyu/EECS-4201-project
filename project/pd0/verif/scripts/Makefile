@@ -9,4 +9,7 @@ export SIM_DIR     = $(SIM_ROOT)/test_pd
 
 all: make_sim_dir compile run
 
+VCD_FILE	?=$(CL_ROOT)/test_pd.vcd
+VCD_FILE_STR ?= \"$(VCD_FILE)\"
+
 include ${PROJECT_ROOT}/common/verif/tb/scripts/Makefile.common.inc
