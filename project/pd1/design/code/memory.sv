@@ -14,7 +14,6 @@
  *
  * Outputs:
  * 1) DWIDTH data output data_o
- * 2) data out valid signal data_vld_o
  */
 
 module memory #(
@@ -31,8 +30,7 @@ module memory #(
   input logic read_en_i,
   input logic write_en_i,
   // outputs
-  output logic [DWIDTH-1:0] data_o,
-  output logic data_vld_o
+  output logic [DWIDTH-1:0] data_o
 );
 
   logic [DWIDTH-1:0] temp_memory [0:`MEM_DEPTH];

@@ -18,8 +18,8 @@ generate if(`PATTERN_DUMP==1) begin
 end
 endgenerate
 generate if (`PATTERN_CHECK==1) begin
-  `include "tasks.h"
   `include "pattern_check.h"
+  `include "tasks.h"
 end
 endgenerate
 `endif
