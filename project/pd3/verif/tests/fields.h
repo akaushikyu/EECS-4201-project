@@ -13,4 +13,15 @@
 `define __D_IMM              95:64
 `define __D_SHAMT            100:96
 
-`define __PATTERN_RNG        255:0
+`define __R_RNG             383:256
+`define __R_READ_RS1        4:0
+`define __R_READ_RS2        4:0
+`define __R_READ_RS1_DATA   31:0
+`define __R_READ_RS2_DATA   31:0
+
+`define __E_RNG             511:384
+`define __E_PC              31:0
+`define __E_ALU_RES         31:0
+`define __E_BR_TAKEN        0:0
+
+`define __PATTERN_RNG        511:0
