@@ -13,11 +13,6 @@ module clockgen(
   output logic rst
 );
 
-  initial begin
-    clk = 0;
-    forever #1 clk = !clk;
-  end
-
   // common logic for iverilog and verilator
   integer counter = 0;
   always_ff @(posedge clk) begin
@@ -44,6 +39,11 @@ module clockgen(
         clk = clk ^ 1;
       end
     endfunction
+  `else
+    initial begin
+      clk = 0;
+      forever #1 clk = !clk;
+    end
   `endif
 
 endmodule

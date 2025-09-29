@@ -9,11 +9,11 @@ VCD ?= 0
 
 ifeq ($(VCD), 1)
 VFLAGS+= --trace
-_CFLAGS+= -DVCD -CFLAGS -DVCD_FILE=test_pd1.vcd
+_CFLAGS+= -DVCD -DVCD_FILE=$(TEST).vcd
 endif
 
 ifneq ($(_CFLAGS), )
-CFLAGS=-CFLAGS $(_CFLAGS)
+CFLAGS=-CFLAGS "$(_CFLAGS)"
 endif
 
 # Normal tests, not c tests
