@@ -15,13 +15,13 @@
 
 `define __R_RNG             383:256
 `define __R_READ_RS1        4:0
-`define __R_READ_RS2        4:0
-`define __R_READ_RS1_DATA   31:0
-`define __R_READ_RS2_DATA   31:0
+`define __R_READ_RS2        9:5
+`define __R_READ_RS1_DATA   41:10
+`define __R_READ_RS2_DATA   73:42
 
-`define __E_RNG             511:384
-`define __E_PC              31:0
-`define __E_ALU_RES         31:0
-`define __E_BR_TAKEN        0:0
+`define __E_RNG              511:384
+`define __E_PC               31:0
+`define __E_ALU_RES          63:32
+`define __E_BR_TAKEN         64:64
 
 `define __PATTERN_RNG        511:0
