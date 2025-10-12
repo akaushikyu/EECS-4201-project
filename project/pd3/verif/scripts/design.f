@@ -5,4 +5,6 @@ memory.sv
 fetch.sv
 control.sv
 decode.sv
+execute.sv
+register_file.sv
 pd3.sv
