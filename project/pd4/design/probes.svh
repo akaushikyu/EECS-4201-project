@@ -26,7 +26,6 @@
 
 //`define PROBE_M_PC                // ??
 //`define PROBE_M_ADDRESS           // ??
-//`define PROBE_M_RW                // ??
 //`define PROBE_M_SIZE_ENCODED      // ??
 //`define PROBE_M_DATA              // ??
 

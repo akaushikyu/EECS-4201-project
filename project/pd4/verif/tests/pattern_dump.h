@@ -47,7 +47,6 @@ always @(negedge clock) begin : pattern_dump_proc
     stage = 128'hxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
     stage[`__M_PC] = dut.core.`PROBE_M_PC;
     stage[`__M_ADDRESS] = dut.core.`PROBE_M_ADDRESS;
-    stage[`__M_RW] = dut.core.`PROBE_M_RW;
     stage[`__M_SIZE_ENCODED] = dut.core.`PROBE_M_SIZE_ENCODED;
     stage[`__M_DATA] = dut.core.`PROBE_M_DATA;
     pattern_dump[`__M_RNG] = stage;

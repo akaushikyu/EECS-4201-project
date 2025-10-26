@@ -1,4 +1,4 @@
-# PD4 - Memory and write-back stage 
+# PD4 - Memory and write-back stage
 
 ## Description
 
@@ -8,16 +8,22 @@ In this PD, you will develop the **memory stage** and **write-back stage**.
 - Your design should now implement a single-cycle pipeline that follows branches and jumps correctly.
 - The code templates and descriptions are provided in `design/code/*.sv`.
 
+## Notes
+### Please keep in mind the below points and you may make appropriate changes to the module interfaces
+- Note that the memory stage from PD1 must be extended to support different access sizes (`lbu`, `lb`, `lhu`, `lh`, `lw`, `sb`, `sh`, `sw`).
+- Regarding the instruction fetch and data access memory handling, you have two options. Option 1: instantiate two different memory modules where one is for instructions and the other is for data, Option 2: if you intend to use a single memory, increase the interfaces of the memory module with additional read ports to eliminate structural hazards.
+- The fetch stage from PD1 must be extended to determine which PC to fetch the instruction from depending on the branch condition or jump instruction.
+
 ## Design steps
 
-1. The design templates and descriptions for these circuits are described in the `design/code/\*.sv` files. 
+1. The design templates and descriptions for these circuits are described in the `design/code/\*.sv` files.
 2. Once you have the designs ready, instantiate the circuit modules and declare the necessary signals in the top level file `design/code/pd4.sv`.
 3. Write a test-bench that provides input stimulus to the design, and validates the correctness of your design. Ensure to write a comprehensive testbench that stresses your design.
 4. Once you have validated your design with your test-bench, you are ready to test your design against the test cases in `verif/data/test*.x`. Follow the following sub-steps:
     1. First, replace the "??" in `design/probes.svh` with the appropriate signals defined in `design/code/pd4.sv`.
     2. If you have created more design files than those provided in the `design/code` directory, ensure to specify these files in `verif/scripts/design.f`. Otherwise, you will encounter compile issues.
     3. Compile your design as described [here](../../../README.md)
-    4. Run the design by setting the `PATTERN_CHECK` flag to 1 for all tests included in `verif/data/`: 
+    4. Run the design by setting the `PATTERN_CHECK` flag to 1 for all tests included in `verif/data/`:
     ```
     make run -C verif/scripts/ VSIM=1 TEST=<test-name> PATTERN_CHECK=1
     ```
