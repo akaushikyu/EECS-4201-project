@@ -27,9 +27,8 @@
 `define __M_RNG              639:512
 `define __M_PC               31:0
 `define __M_ADDRESS          63:32
-`define __M_RW               64:64
-`define __M_SIZE_ENCODED     66:65
-`define __M_DATA             98:67
+`define __M_SIZE_ENCODED     65:64
+`define __M_DATA             97:66
 
 `define __W_RNG              767:640
 `define __W_PC               31:0

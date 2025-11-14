@@ -151,13 +151,11 @@ task check_M;
     
     pc              = p[`__M_PC];
     address         = p[`__M_ADDRESS];
-    rw              = p[`__M_RW];
     size_encoded    = p[`__M_SIZE_ENCODED];
     data            = p[`__M_DATA];
     if(
       (^pc !== 1'bx && pc !== dut.core.`PROBE_M_PC) ||
       (^address !== 1'bx && address !== dut.core.`PROBE_M_ADDRESS) ||
-      (^rw !== 1'bx && rw !== dut.core.`PROBE_M_RW) ||
       (^size_encoded !== 1'bx && size_encoded !== dut.core.`PROBE_M_SIZE_ENCODED) ||
       (^data !== 1'bx && data !== dut.core.`PROBE_M_DATA) 
     ) begin
