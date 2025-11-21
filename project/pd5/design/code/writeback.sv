@@ -18,11 +18,13 @@
     parameter int DWIDTH=32,
     parameter int AWIDTH=32
  )(
-     input logic [AWIDTH-1:0] pc_i,
-     input logic [DWIDTH-1:0] alu_res_i,
-     input logic [DWIDTH-1:0] memory_data_i,
-     input logic brtaken_i,
-     output logic [DWIDTH-1:0] writeback_data_o
+    input logic [AWIDTH-1:0] pc_i,
+    input logic [DWIDTH-1:0] alu_res_i,
+    input logic [DWIDTH-1:0] memory_data_i,
+    input logic [1:0] wbsel_i,
+    input logic brtaken_i,
+    output logic [DWIDTH-1:0] writeback_data_o,
+    output logic [AWIDTH-1:0] next_pc_o
  );
 
     wire [AWIDTH-1:0] pc_inc;
