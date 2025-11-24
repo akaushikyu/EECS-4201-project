@@ -142,7 +142,6 @@ task check_M;
   begin : check_M_func
     reg[31:0]       pc;
     reg[31:0]       address;
-    reg[0:0]        rw;
     reg[1:0]        size_encoded;
     reg[31:0]       data;
  
@@ -160,7 +159,7 @@ task check_M;
       (^data !== 1'bx && data !== dut.core.`PROBE_M_DATA) 
     ) begin
       $sformat(msg, "M stage mismatch: expected PC=%x, ADDRESS=%x, SIZE_ENCODED=%x, DATA=%x, got PC=%x, ADDRESS=%x, SIZE_ENCODED=%x, DATA=%x", 
-        pc, address, rw, size_encoded, data,
+        pc, address, size_encoded, data,
         dut.core.`PROBE_M_PC, dut.core.`PROBE_M_ADDRESS, dut.core.`PROBE_M_SIZE_ENCODED, dut.core.`PROBE_M_DATA);
       res = 0;
     end else begin

@@ -1,0 +1,11 @@
+addi x1,x0,10
+addi x2,x1,20
+nop
+nop
+nop
+nop
+ecall
+nop
+nop
+nop
+nop

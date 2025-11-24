@@ -1,0 +1,16 @@
+nop
+nop
+beq  x1,x3,1000014
+addi x3,x0,30
+addi x4,x0,40
+addi x5,x3,0
+addi x6,x4,0
+nop
+nop
+nop
+nop
+ecall
+nop
+nop
+nop
+nop
