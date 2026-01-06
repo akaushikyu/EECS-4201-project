@@ -5,7 +5,7 @@ SystemVerilog is the hardware descriptive language (HDL) used to implement the c
 
 ## Project structure
 
-The project is divided into *6 project deliverables* (PDs). Each PD focuses on building a portion of the core culminating into the final pipelined implementation delivered in PD5.
+The project is divided into *7 project deliverables* (PDs). Each PD focuses on building a portion of the core culminating into the final pipelined implementation delivered in PD6.
 Please refer the READMEs for each PD below for a detailed description of the implementation expected in the deliverable.
 
 - [PD0](project/pd0/docs/README.md)
@@ -14,6 +14,7 @@ Please refer the READMEs for each PD below for a detailed description of the imp
 - [PD3](project/pd3/docs/README.md)
 - [PD4](project/pd4/docs/README.md)
 - [PD5](project/pd5/docs/README.md)
+- [PD6](project/pd6/docs/README.md)
 
 ## Getting started
 Note that the below steps assume a linux environment with ModelSim or Verilator installed. 
