@@ -171,3 +171,5 @@ For code quality, please adhere to the programming styles and guidelines describ
 ### Acknowledgements
 ------------------------------------
 This course project is inspired by UWaterloo's ECE 429/320/621 course project structure. 
+
+Many thanks to the Fall 2025 students of EECS 4201 who caught bugs and suggested improvements to this project (Hussein, Salwan, Abdulbasit, Minhyeok, Areeba, Nitant, Anthony, Vikram, Steven, Cheuk, Clarence, Patrick, Dylan, Aadi, Paavan, Harman, Arnav, Salim, Salman, Manya, Artin, Yousif, Anagha, Kiet, Colin, Kaibin, Jackie, Quardin, Mavra, Kosy, Kanwarpartap, Paramkumar, Mateo, Taha, Sara, Abdullah, Ariana, and Erwin). 
