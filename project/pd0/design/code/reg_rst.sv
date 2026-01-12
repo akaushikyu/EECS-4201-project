@@ -20,10 +20,17 @@ module reg_rst #(
     input logic rst,
     input logic [DWIDTH-1:0] in_i,
     output logic [DWIDTH-1:0] out_o
-);
-    /*
-     * Process definitions to be filled by
-     * student below...
-     */
+    );
+    
+    always @(posedge clk) begin
+        if (rst) begin
+            out_o<=DWIDTH'd0;
+        else
+            out_o<= in_i;
+        end
+
+    end
+   
+   
 
 endmodule: reg_rst

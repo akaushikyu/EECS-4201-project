@@ -1,5 +1,6 @@
 /*
- * Module: three_stage_pipeline
+ *
+ Module: three_stage_pipeline
  *
  * A 3-stage pipeline (TSP) where the first stage performs an addition of two
  * operands (op1_i, op2_i) and registers the output, and the second stage computes
@@ -26,21 +27,41 @@
  * 1) DWIDTH-wide result res_o
  */
 
+import alu::*;
+import reg_rst::*;
+
 module three_stage_pipeline #(
-parameter int DWIDTH = 8)(
-        input logic clk,
-        input logic rst,
-        input logic [DWIDTH-1:0] op1_i,
-        input logic [DWIDTH-1:0] op2_i,
-        output logic [DWIDTH-1:0] res_o
-    );
+			      parameter int DWIDTH = 8)(
+			      input logic		  clk,
+			      input logic		  rst,
+			      input logic [DWIDTH-1:0]  op1_i,
+			      input logic [DWIDTH-1:0]  op2_i,
+			      output logic [DWIDTH-1:0] res_o
+			    );
 
-    /*
-     * Process definitions to be filled by
-     * student below...
-     * [HINT] Instantiate the alu and reg_rst modules
-     * and set up the necessary connections
-     *
-     */
-
+   /*
+    * Process definitions to be filled by
+    * student below...
+    * [HINT] Instantiate the alu and reg_rst modules
+    * and set up the necessary connections
+    *
+    */
+   wire [DWIDTH*2-1:0]inS1;
+   assign inS1[DWIDTH-1:0] = op1_i; 
+   assign inS1[DWIDTH*2-1:DWIDTH] = op2_i;
+						      
+   reg_rst (#DWIDTH*2) s1(.clk(clk),.rst(rst),.in_i(),.out_i());
+   
+   
+   always @(posedge clk) begin
+      if (rst) begin:
+	 
+         s1 <= (DWIDTH*2)'d0;
+         s2 <= (DWIDTH*2)'d0;
+         s3 <= (DWIDTH*2)'d0;
+      end
+      else begin
+         s1   
+      end
+   end
 endmodule: three_stage_pipeline

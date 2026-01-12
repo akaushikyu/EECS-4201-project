@@ -31,8 +31,20 @@ module alu #(
     );
 
     /*
-     * Process definitions to be filled by
+     * Process definitions to be filled 
      * student below...
      */
+    
+    always @* begin
+        case(sel_i)
+            ADD: res_o = op1_i + op2_i; 
+            SUB: res_o = op1_i - op2_i;
+            AND: res_o = op1_i & op2_i; 
+            OR : res_o = op1_i | op2_i; 
+        
+        endcase    
+        zero_o = op1_i-op2_i == 0 ? 1 : 0;
+        neg_o = res_o[3];
+    end
 
 endmodule: alu
