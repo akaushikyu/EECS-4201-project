@@ -27,41 +27,54 @@
  * 1) DWIDTH-wide result res_o
  */
 
+
+
 import alu::*;
 import reg_rst::*;
 
 module three_stage_pipeline #(
-			      parameter int DWIDTH = 8)(
-			      input logic		  clk,
-			      input logic		  rst,
-			      input logic [DWIDTH-1:0]  op1_i,
-			      input logic [DWIDTH-1:0]  op2_i,
-			      output logic [DWIDTH-1:0] res_o
-			    );
+			                  parameter int DWIDTH = 8)(
+			                                            input logic               clk,
+			                                            input logic               rst,
+			                                            input logic [DWIDTH-1:0]  op1_i,
+			                                            input logic [DWIDTH-1:0]  op2_i,
+			                                            output logic [DWIDTH-1:0] res_o
+			                                            );
 
-   /*
-    * Process definitions to be filled by
-    * student below...
-    * [HINT] Instantiate the alu and reg_rst modules
-    * and set up the necessary connections
-    *
-    */
-   wire [DWIDTH*2-1:0]inS1;
-   assign inS1[DWIDTH-1:0] = op1_i; 
-   assign inS1[DWIDTH*2-1:DWIDTH] = op2_i;
-						      
-   reg_rst (#DWIDTH*2) s1(.clk(clk),.rst(rst),.in_i(),.out_i());
-   
-   
-   always @(posedge clk) begin
-      if (rst) begin:
-	 
-         s1 <= (DWIDTH*2)'d0;
-         s2 <= (DWIDTH*2)'d0;
-         s3 <= (DWIDTH*2)'d0;
-      end
-      else begin
-         s1   
-      end
-   end
+  /*
+   * Process definitions to be filled by
+   * student below...
+   * [HINT] Instantiate the alu and reg_rst modules
+   * and set up the necessary connections
+   *
+   */
+  int dwx2 = DWIDTH*2; 
+  wire [DWIDTH*2-1:0] inS1;   wire [DWIDTH*2-1:0]inS1;
+
+  wire [DWIDTH*2-1:0]inS1;
+  wire [DWIDTH*2-1:0] inAluAdd;
+  wire [DWIDTH*2-1:0] inAluSub;
+  
+  assign inS1[DWIDTH-1:0] = op1_i; 
+  assign inS1[DWIDTH*2-1:DWIDTH] = op2_i;
+  
+  wire [DWIDTH*2-1:0]inS2;
+  wire [DWIDTH-1:0]  outAluAdd;
+  wire [DWIDTH-1:0]  outAluSub;
+  
+  assign inS2[DWIDTH*2-1:0] = op1_i + (outAluAdd << (DWIDTH-1));
+  
+  wire [DWIDTH-1:0]inS3;
+  
+  reg_rst #(.dwx2) s1(.clk(clk),.rst(rst),.in_i(inS1),.out_i(inAluAdd));
+  reg_rst #(.dwx2) s2(.clk(clk),.rst(rst),.in_i(inS1[DWIDTH-1:0]+(outAluAdd<<(DWIDTH-1))),.out_i(inS2)); 
+  reg_rst #(.dwx2) s3(.clk(clk),.rst(rst),.in_i(outAluSub),.out_i(1'd0 + (inS3<<(DWIDTH-1))));	  
+  alu #(.DWIDTH) adder(.clk(clk),.rst(rst),.op1_i(inAluAdd[DWIDTH*2-1:DWIDTH]),.op2_i(inAluAdd[DWIDTH-1:0]),.res_o(outAluAdd));
+  alu #(.DWIDTH) subber(.clk(clk),.rst(rst),.op1_i(inAluSub[DWIDTH*2-1:DWIDTH]),.op2_i(inAluSub[DWIDTH-1:0]),.res_o(outAluSub));
+
+  assign res_o = inS3[DWIDTH*2-1:DWIDTH];
+  
+  
+  
+  
 endmodule: three_stage_pipeline
