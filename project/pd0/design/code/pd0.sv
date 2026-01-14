@@ -23,6 +23,22 @@ module pd0 #(
  logic assign_xor_op1;
  logic assign_xor_op2;
  logic assign_xor_res;
+ 
+ // Probes for ALU
+ logic [1:0] assign_alu_sel_i;
+ logic [DWIDTH-1:0] assign_alu_op1_i;
+ logic [DWIDTH-1:0] assign_alu_op2_i;
+ logic [DWIDTH-1:0] assign_alu_res_o;
+ 
+ //Probes for Register
+ logic [DWIDTH-1:0] assign_reg_rst_in_i;
+ logic [DWIDTH-1:0] assign_reg_rst_out_o;
+
+ //Probes for three stage pipeline
+ logic [DWIDTH-1:0] assign_three_stage_pipeline_op1_i;
+ logic [DWIDTH-1:0] assign_three_stage_pipeline_op2_i;
+ logic [DWIDTH-1:0] assign_three_stage_pipeline_res_o;
+
 
  assign_xor assign_xor_0 (
      .op1_i (assign_xor_op1),
@@ -30,10 +46,35 @@ module pd0 #(
      .res_o (assign_xor_res)
  );
 
+
  /*
   * Instantiate other submodules and
   * probes. To be filled by student...
   *
   */
+  alu assign_alu(
+    .op1_i (assign_alu_op1_i),
+    .op2_i (assign_alu_op2_i),
+    .sel_i (assign_alu_sel_i),
+    .res_o (assign_alu_res_o),
+    .zero_o (),
+    .neg_o ()
+  );
+
+  reg_rst assign_reg_rst(
+    .clk (clk),
+    .rst (reset),
+    .in_i (assign_reg_rst_in_i),
+    .out_o (assign_reg_rst_out_o)
+  );
+
+  three_stage_pipeline assign_three_stage_pipeline(
+    .clk (clk),
+    .rst (reset),//use the top reset
+    .op1_i (assign_three_stage_pipeline_op1_i),
+    .op2_i (assign_three_stage_pipeline_op2_i),
+    .res_o (assign_three_stage_pipeline_res_o)
+  );
+
 
 endmodule: pd0

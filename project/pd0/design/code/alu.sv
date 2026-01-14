@@ -21,7 +21,7 @@
 import constants_pkg::*;
 
 module alu #(
-    parameter int DWIDTH = 8)(
+    parameter int DWIDTH = 32)(
         input logic [1:0] sel_i,
         input logic [DWIDTH-1:0] op1_i,
         input logic [DWIDTH-1:0] op2_i,
@@ -34,5 +34,16 @@ module alu #(
      * Process definitions to be filled by
      * student below...
      */
+    always_comb begin
+        res_o = '0;
+        case (sel_i)
+            ADD: res_o = op1_i + op2_i;
+            SUB: res_o = op1_i - op2_i;
+            AND: res_o = op1_i & op2_i;
+            OR: res_o = op1_i | op2_i;
+        endcase
+    end
+    assign zero_o = (res_o == 0); //condition: check if all zeros then result 1
+    assign neg_o = res_o[DWIDTH-1]; //check the last bit for sign
 
 endmodule: alu
