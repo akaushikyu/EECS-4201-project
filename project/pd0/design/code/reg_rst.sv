@@ -24,8 +24,9 @@ module reg_rst #(
     
     always @(posedge clk) begin
         if (rst) begin
-            out_o<=(DWIDTH)'d0;
-        else
+            out_o<=0;
+        end
+        else begin
             out_o<= in_i;
         end
 
