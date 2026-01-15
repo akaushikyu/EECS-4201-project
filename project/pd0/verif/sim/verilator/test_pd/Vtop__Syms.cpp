@@ -23,7 +23,7 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep, Vtop* mode
     , TOP____024unit{this, Verilated::catName(namep, "$unit")}
 {
         // Check resources
-        Verilated::stackCheck(42);
+        Verilated::stackCheck(35);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);
@@ -34,7 +34,10 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep, Vtop* mode
     TOP____024unit.__Vconfigure(true);
     // Setup scopes
     __Vscope_top.configure(this, name(), "top", "top", "<null>", -12, VerilatedScope::SCOPE_OTHER);
+    __Vscope_top__alu_test.configure(this, name(), "top.alu_test", "alu_test", "<null>", -12, VerilatedScope::SCOPE_OTHER);
     __Vscope_top__clkg.configure(this, name(), "top.clkg", "clkg", "<null>", -12, VerilatedScope::SCOPE_OTHER);
+    __Vscope_top__reg_rst_test.configure(this, name(), "top.reg_rst_test", "reg_rst_test", "<null>", -12, VerilatedScope::SCOPE_OTHER);
+    __Vscope_top__tsp_test.configure(this, name(), "top.tsp_test", "tsp_test", "<null>", -12, VerilatedScope::SCOPE_OTHER);
     // Setup export functions
     for (int __Vfinal = 0; __Vfinal < 2; ++__Vfinal) {
         __Vscope_top__clkg.exportInsert(__Vfinal, "toggleClock", (void*)(&Vtop___024root____Vdpiexp_top__DOT__clkg__DOT__toggleClock_TOP));

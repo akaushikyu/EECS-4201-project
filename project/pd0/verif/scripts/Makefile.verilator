@@ -29,7 +29,7 @@ compile:
 		-top-module $(TOP) \
 		--Mdir $(SIM_DIR) \
 		+define+VCD_FILE=\"test_pd0.vcd\" \
-		+define+MEM_PATH_TO_PROGRAM="\"\""
+		+define+MEM_PATH_TO_PROGRAM="\"$(PROG)\""
 	make -C $(SIM_DIR) -f V$(TOP).mk V$(TOP)
 
 run: compile
