@@ -12,19 +12,35 @@
  * 2) reset signal
  */
 module pd0 #(parameter int DWIDTH = 32)
-  (
-   input logic clk,
-   input logic reset
-  
-  );
+   (
+   input logic               clk,
+   input logic               reset
+   );
 
   
   // Probes that will be defined in probes.svh
-  logic assign_xor_op1;
-  logic assign_xor_op2;
-  logic assign_xor_res;
+  logic [DWIDTH-1:0]  assign_T;
+  logic [DWIDTH-1:0]  assign_TSP_op1_i;
+      
+  logic [DWIDTH-1:0]  assign_TSP_op2_i;   
+  logic [DWIDTH-1:0]  assign_alu_op1_i;   
+  logic [DWIDTH-1:0]  assign_alu_op2_i;     
+  logic [1:0]         assign_alu_sel_i;     
+  logic [DWIDTH-1:0]  assign_reg_rst_in_i;  
+  logic               assign_xor_op1;       
+  logic               assign_xor_op2;          
+                                             
+  logic               assign_xor_res;     
+  logic [DWIDTH-1:0]  assign_TSP_res_o;    
+  logic               assign_alu_neg_o;    
+  logic [DWIDTH-1:0]  assign_alu_res_o;      
+  logic               assign_alu_zero_o;         
+  logic [DWIDTH-1:0]  assign_reg_rst_out_o;
+  
 
-  assign_xor assign_xor_0 (
+
+  
+  assign_xor assign_xor_0  (
                            .op1_i (assign_xor_op1),
                            .op2_i (assign_xor_op2),
                            .res_o (assign_xor_res)
@@ -36,72 +52,65 @@ module pd0 #(parameter int DWIDTH = 32)
    * probes. To be filled by student...
    *
    */
-  
-  /*AUTOINPUT*/
-  // Beginning of automatic inputs (from unused autoinst inputs)
-  input logic [DWIDTH-1:0] assign_TSP_op1_i;    // To assign_three_stage_pipeline of three_stage_pipeline.v
-  input logic [DWIDTH-1:0] assign_TSP_op2_i;    // To assign_three_stage_pipeline of three_stage_pipeline.v
-  input logic [DWIDTH-1:0] assign_alu_op1_i;    // To assign_alu of alu.v
-  input logic [DWIDTH-1:0] assign_alu_op2_i;    // To assign_alu of alu.v
-  input logic [1:0]     assign_alu_sel_i;       // To assign_alu of alu.v
-  input logic [DWIDTH-1:0] assign_reg_rst_in_i; // To assign_reg of reg_rst.v
-  input logic           rst;                    // To assign_reg of reg_rst.v, ...
-  // End of automatics
-  
-  /*AUTOOUTPUT*/
-  // Beginning of automatic outputs (from unused autoinst outputs)
-  output logic [DWIDTH-1:0] assign_TSP_res_o;   // From assign_three_stage_pipeline of three_stage_pipeline.v
-  output logic          assign_alu_neg_o;       // From assign_alu of alu.v
-  output logic [DWIDTH-1:0] assign_alu_res_o;   // From assign_alu of alu.v
-  output logic          assign_alu_zero_o;      // From assign_alu of alu.v
-  output logic [DWIDTH-1:0] assign_reg_rst_out_o;// From assign_reg of reg_rst.v
-  // End of automatics
+
   
 
+// input logic [DWIDTH-1:0] assign_TSP_op1_i,      
+// input logic [DWIDTH-1:0] assign_TSP_op2_i,      
+// // output logic              assign_alu_zero_o,      
+// input logic [DWIDTH-1:0] assign_alu_op1_i,      
+// // output logic [DWIDTH-1:0] assign_reg_rst_out_o
+// input logic [DWIDTH-1:0] assign_alu_op2_i,     
+// input logic [1:0]        assign_alu_sel_i,   
+// input logic [DWIDTH-1:0] assign_reg_rst_in_i,  
+// // output logic [DWIDTH-1:0] assign_TSP_res_o,  
+// output logic              assign_alu_neg_o,    
+// output logic [DWIDTH-1:0] assign_alu_res_o,                    
 
-alu assign_alu (
-                  // Outputs
-                  .res_o                (assign_alu_res_o[DWIDTH-1:0]),
-                  .zero_o               (assign_alu_zero_o),
-                  .neg_o                (assign_alu_neg_o),
-                  
-                  // Inputs
-                  .sel_i                (assign_alu_sel_i[1:0]),
-                  .op1_i                (assign_alu_op1_i[DWIDTH-1:0]),
-                  .op2_i                (assign_alu_op2_i[DWIDTH-1:0])
-                /*AUTOINST*/);
+/* verilator lint_off PINMISSING */                
+  alu #(.DWIDTH )assign_alu (
+                             // Outputs
+                             .res_o                (assign_alu_res_o),
+                             .zero_o               (assign_alu_zero_o),
+                             .neg_o                (assign_alu_neg_o),
+                             
+                             // Inputs
+                             .sel_i                (assign_alu_sel_i),
+                             .op1_i                (assign_alu_op1_i),
+                             .op2_i                (assign_alu_op2_i)
+                             /*AUTOINST*/);
+  
 
 
 
 
-
-  reg_rst assign_reg(
+  reg_rst #(.DWIDTH )assign_reg (
                      // Outputs         
-                     .out_o             (assign_reg_rst_out_o[DWIDTH-1:0]),
-                     
+                     .out_o             (assign_reg_rst_out_o),
+    
                      // Inputs
-                     .in_i              (assign_reg_rst_in_i[DWIDTH-1:0]),
-                     
+                     .in_i              (assign_reg_rst_in_i),
+    
                      // Inputs
                      /*AUTOINST*/
                      // Inputs
                      .clk               (clk),
-                     .rst               (rst));
+                     .rst               (reset));
 
   
-  three_stage_pipeline assign_three_stage_pipeline(
+  three_stage_pipeline #(.DWIDTH )assign_three_stage_pipeline (
                                                    // Outputs
-                                                   .res_o               (assign_TSP_res_o[DWIDTH-1:0]),
-                                                   
+                                                   .res_o               (assign_TSP_res_o),
+    
                                                    // Inputs
-                                                   .op1_i               (assign_TSP_op1_i[DWIDTH-1:0]),
-                                                   .op2_i               (assign_TSP_op2_i[DWIDTH-1:0]),
-                                                   
+                                                   .op1_i               (assign_TSP_op1_i),
+                                                   .op2_i               (assign_TSP_op2_i),
+    
                                                    // Inputs
                                                    /*AUTOINST*/
                                                    // Inputs
                                                    .clk                 (clk),
-                                                   .rst                 (rst));
+                                                   .rst                 (reset));
 
   
   
