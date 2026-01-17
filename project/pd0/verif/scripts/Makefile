@@ -12,4 +12,4 @@ all: make_sim_dir compile run
 VCD_FILE	?=$(CL_ROOT)/test_pd.vcd
 VCD_FILE_STR ?= \"$(VCD_FILE)\"
 
-include ${PROJECT_ROOT}/common/verif/tb/scripts/Makefile.common.inc
+include /home/mo/school/4201/RISCV/common/verif/tb/scripts/Makefile.common.inc
