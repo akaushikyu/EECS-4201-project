@@ -107,6 +107,17 @@ make: Leaving directory '/eecs/home/kaushika/EECS-4201-project/project/pd0/verif
 ```
 This is expected as the probe signals are missing and need to be filled in. Once you have the probe signals setup, you should see a `pd.vcd` waveform file generated that you can view using `gtkwave` or the ModelSim GUI.
 
+When you finish all your coding, testing and verification and wish to produce the test_pd.vcd that you will need to view the waveform with, execute the following command: 
+
+for Verilator:
+```
+make all -C verif/scripts/ VERILATOR=1 VCD=1
+```
+for Vsim:
+```
+make all -C verif/scripts/ VSIM=1 VCD=1
+```
+
 
 For PD1 - PD5, you can follow the same steps as above to build and run the design simulation. Note that the build command takes an additional command line switch `TEST=` which specifies the RISC-V test program to load in memory. These tests can be found in `pd*/verif/data/test*.x`.
 For example, if you want to load the `pd*/verif/data/test2.x` program in memory and simulate its execution, then execute the following command:

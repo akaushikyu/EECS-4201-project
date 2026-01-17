@@ -21,14 +21,14 @@
 import constants_pkg::*;
 
 module alu #(
-    parameter int DWIDTH = 8)(
-        input logic [1:0] sel_i,
-        input logic [DWIDTH-1:0] op1_i,
-        input logic [DWIDTH-1:0] op2_i,
-        output logic [DWIDTH-1:0] res_o,
-        output logic zero_o,
-        output logic neg_o
-    );
+              parameter int DWIDTH = 8)(
+                                         input logic [1:0]         sel_i,
+                                         input logic [DWIDTH-1:0]  op1_i,
+                                         input logic [DWIDTH-1:0]  op2_i,
+                                         output logic [DWIDTH-1:0] res_o,
+                                         output logic zero_o,
+                                         output logic neg_o
+                                        );
 
     /*
      * Process definitions to be filled 
@@ -41,7 +41,7 @@ module alu #(
             SUB: res_o = op1_i - op2_i;
             AND: res_o = op1_i & op2_i; 
             OR : res_o = op1_i | op2_i; 
-        
+            
         endcase    
         zero_o = op1_i-op2_i == 0 ? 1 : 0;
         neg_o = res_o[3];

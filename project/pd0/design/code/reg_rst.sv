@@ -14,24 +14,23 @@
  * 1) DWIDTH output out_o
  *
  */
-module reg_rst #(
-    parameter int DWIDTH = 32)(
-    input logic clk,
-    input logic rst,
-    input logic [DWIDTH-1:0] in_i,
-    output logic [DWIDTH-1:0] out_o
-    );
+module reg_rst #(parameter int DWIDTH = 32)(
+                                            input logic clk,
+                                            input logic rst,
+                                            input logic [DWIDTH-1:0] in_i,
+                                            output logic [DWIDTH-1:0] out_o
+                                            );
     
     always @(posedge clk) begin
         if (rst) begin
-          out_o<=0;
+            out_o<=0;
         end
         else begin          
             out_o<= in_i;
         end
 
     end
-   
-   
+    
+    
 
 endmodule: reg_rst
