@@ -28,6 +28,7 @@ void Vtop___024root___eval_nba(Vtop___024root* vlSelf) {
     }
     if ((2ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
         Vtop___024root___nba_sequent__TOP__2(vlSelf);
+        vlSelfRef.__Vm_traceActivity[1U] = 1U;
     }
 }
 

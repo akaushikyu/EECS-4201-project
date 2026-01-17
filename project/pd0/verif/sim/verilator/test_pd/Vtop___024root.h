@@ -44,6 +44,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
     IData/*31:0*/ top__DOT__tsp_op2;
     IData/*31:0*/ top__DOT__tsp_out;
     IData/*31:0*/ top__DOT__clkg__DOT__counter;
+    IData/*31:0*/ top__DOT__dut__DOT__core__DOT__assign_T;
     IData/*31:0*/ top__DOT__dut__DOT__core__DOT__assign_TSP_op2_i;
     IData/*31:0*/ top__DOT__dut__DOT__core__DOT__assign_alu_op2_i;
     IData/*31:0*/ top__DOT__dut__DOT__core__DOT__assign_reg_rst_out_o;
@@ -51,6 +52,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop___024root final : public VerilatedModule
     QData/*63:0*/ top__DOT__dut__DOT__core__DOT__assign_three_stage_pipeline__DOT__inAluAdd;
     QData/*63:0*/ top__DOT__dut__DOT__core__DOT__assign_three_stage_pipeline__DOT__inAluSub;
     QData/*63:0*/ top__DOT__dut__DOT__core__DOT__assign_three_stage_pipeline__DOT____Vcellout__s3__out_o;
+    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<4> __VactTriggered;
     VlTriggerVec<4> __VnbaTriggered;
