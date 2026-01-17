@@ -1,3 +1,0 @@
-vcd file pd.vcd
-vcd add -r /top/*
-run -all
