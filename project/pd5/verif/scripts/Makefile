@@ -1,10 +1,13 @@
-# set up appropriate variables
+SHELL := /bin/bash -o pipefail
+.SHELLFLAGS := -eu -o pipefail -c
+.PHONY: all compile run clean make_sim_dir
 
 # test name. Set to test_null only if TEST is not specified
 export TEST ?= test1
 
 export SCRIPTS_DIR = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 export CL_ROOT     = $(realpath $(SCRIPTS_DIR)/../../)
+export PROJECT_ROOT ?= $(realpath $(CL_ROOT)/../..)
 export TEST_NAME   = $(CL_ROOT)/verif/tests/test_pd
 
 export SIM_ROOT    = $(CL_ROOT)/verif/sim/$(SIMULATOR)
@@ -14,8 +17,11 @@ all: make_sim_dir compile run
 
 # define parameters
 MEM_PATH              ?= $(CL_ROOT)/verif/data/${TEST}.x
+ifeq ($(wildcard $(MEM_PATH)),)
+$(error Memory image not found: $(MEM_PATH). Use an absolute MEM_PATH or the root Makefile)
+endif
 MEM_PATH_NOT_DIR			:= $(notdir $(MEM_PATH))
-LINE_COUNT            ?= $(shell echo `wc -l < $(MEM_PATH)`)
+LINE_COUNT            ?= $(strip $(shell wc -l < "$(MEM_PATH)"))
 MEM_PATH_STR          ?= \"$(abspath $(MEM_PATH))\"
 MEM_DEPTH             ?= 1048576
 DWIDTH			      ?= 32
@@ -26,7 +32,7 @@ TRACE_FILE				    ?= $(MEM_PATH_NOT_DIR:x=trace)
 VCD_FILE				      ?= $(MEM_PATH_NOT_DIR:x=vcd)
 VCD_FILE_STR			    ?= \"$(VCD_FILE)\"
 PATTERN_FILE          ?= $(MEM_PATH:x=pattern) # Replace MEM_PATH .x with .pattern by default
-PATTERN_LINE_COUNT    ?= $(shell echo `wc -l < $(PATTERN_FILE)`)
+PATTERN_LINE_COUNT    ?= $(if $(wildcard $(PATTERN_FILE)),$(strip $(shell wc -l < "$(PATTERN_FILE)")),1)
 PATTERN_FILE_STR      ?= \"$(abspath $(PATTERN_FILE))\"
 PATTERN_DUMP_FILE			?= $(MEM_PATH_NOT_DIR:x=dump)# Replace MEM_PATH .x with .pattern by default
 PATTERN_DUMP_FILE_STR ?= \"$(PATTERN_DUMP_FILE)\"

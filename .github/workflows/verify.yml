@@ -1,0 +1,23 @@
+name: Verify RV32I core
+
+on: [push, pull_request]
+
+jobs:
+  simulation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Verilator
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator
+      - name: Check all benchmarks
+        run: make test
+      - name: Check pipeline regressions
+        run: make regressions
+      - name: Save verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-results
+          path: project/pd5/verif/sim/benchmarks/*.json

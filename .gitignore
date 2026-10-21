@@ -1,0 +1,19 @@
+# Simulator builds, traces, and generated pipeline dumps
+**/verif/sim/
+project/pd5/design/Pattern_Dump_BM/
+*.vcd
+*.fst
+*.trace
+*.dump
+output.log
+obj_dir/
+work/
+transcript
+vsim.wlf
+run.macro
+
+# Python and editor artifacts
+__pycache__/
+*.py[cod]
+.DS_Store
+*.swp
